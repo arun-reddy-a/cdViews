@@ -1,17 +1,17 @@
 ScanQA_file:
-  train: '/data/qa/ScanQA/ScanQA_v1.0_train.json'
-  val: '/data/qa/ScanQA/ScanQA_v1.0_val.json'
-  test_w_obj: '/data/qa/ScanQA/ScanQA_v1.0_test_w_obj.json'
-  test_wo_obj: '/data/qa/ScanQA/ScanQA_v1.0_test_wo_obj.json'
+  train: '../data/qa/ScanQA/ScanQA_v1.0_train.json'
+  val: '../data/qa/ScanQA/ScanQA_v1.0_val.json'
+  test_w_obj: '../data/qa/ScanQA/ScanQA_v1.0_test_w_obj.json'
+  test_wo_obj: '../data/qa/ScanQA/ScanQA_v1.0_test_wo_obj.json'
 
 SQA_file:
-  train: '/data/qa/SQA/SQA_train.json'
-  val: '/data/qa/SQA/SQA_val.json'
-  test: '/data/qa/SQA/SQA_test.json'
+  train: '../data/qa/SQA/SQA_train.json'
+  val: '../data/qa/SQA/SQA_val.json'
+  test: '../data/qa/SQA/SQA_test.json'
 
-image_folder: '/data/qa/scannetv2/frames_square'
-feature_folder: '/data/qa/scannetv2/llava_ov_feats'
-view_distance_folder: '/data/qa/scannetv2/view_distance'
+image_folder: '../data/qa/scannetv2/frames_square'
+feature_folder: '../data/qa/scannetv2/llava_ov_feats'
+view_distance_folder: '../data/qa/scannetv2/view_distance'
 
 dataset: ScanQA
 batch_size: 8
@@ -40,14 +40,14 @@ context_M: "Consider the following example to guide your responses:
            - If any attributes or positions do not match the caption, answer with option B.
            - If the image contains partial but unclear information, answer with option C."
 
-LVLM_ckpt: '/data/qa/model/llava-onevision-qwen2-7b-ov'
+LVLM_ckpt: '../data/qa/model/llava-onevision-qwen2-7b-ov'
 
 # output
-caption_file: '/data/qa/{}_QA_captions.json'
-view_labeling_file: '/data/qa/{}_view_labeling.json'
+caption_file: '../data/qa/{}_QA_captions.json'
+view_labeling_file: '../data/qa/{}_view_labeling.json'
 work_dir: './'
-pretrained_view_selector_ckpt: '/data/qa/model/{}_view_selector.pth'
+pretrained_view_selector_ckpt: '../data/qa/model/{}_view_selector.pth'
 
 # ranked by our view_selector
-ranked_view_file: '/data/qa/{}_{}_view_ranking.json'
-answers_file: '/data/qa/{}_{}_answers.json'
+ranked_view_file: '../data/qa/{}_{}_view_ranking.json'
+answers_file: '../data/qa/{}_{}_answers.json'
