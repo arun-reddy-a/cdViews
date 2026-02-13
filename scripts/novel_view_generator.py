@@ -340,11 +340,15 @@ def generate_novel_views_for_scene(
 
     color_dir = os.path.join(scene_dir, "color")
     generated_paths = []
+    scene_name = os.path.basename(scene_dir)
 
-    for gap in gaps:
+    from tqdm import tqdm as _tqdm
+    pbar = _tqdm(gaps, desc=f"  {scene_name}", unit="view", leave=False)
+    for gap in pbar:
         target_az = gap["target_az"]
         src_fid = gap["source_fid"]
         rotate = gap["rotate_deg"]
+        pbar.set_postfix(az=f"{target_az:.0f}°", delta=f"{rotate:+.0f}°", refresh=False)
 
         out_path = os.path.join(novel_dir, f"{target_az:.0f}.jpg")
         if os.path.exists(out_path):
@@ -359,8 +363,6 @@ def generate_novel_views_for_scene(
         novel_img = generate_view_for_angle(pipe, src_img, rotate, seed=seed)
         novel_img.save(out_path, quality=95)
         generated_paths.append(out_path)
-        print(f"  Generated {os.path.basename(out_path)} "
-              f"(from frame {src_fid}, Δ={rotate:+.0f}°)")
 
     return generated_paths
 

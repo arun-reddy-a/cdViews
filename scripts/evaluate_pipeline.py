@@ -483,9 +483,13 @@ def evaluate(args):
     print(f"Running inference on {n_sample} questions …")
     print(f"{'─'*60}")
 
-    for line in tqdm(sqa_subset, desc="Inference"):
+    pbar = tqdm(sqa_subset, desc="Inference", unit="q")
+    for line in pbar:
         scene_id = line["scene_id"]
         question_id = str(line["question_id"])
+        pbar.set_postfix(scene=scene_id, novel_sel=sum(
+            t["novel_selected"] for t in novel_selection_tracker
+        ), refresh=False)
 
         # -- View distance for NMS --
         vd_file = os.path.join(args.view_distance_folder, f"{scene_id}.csv")
