@@ -14,6 +14,8 @@ Public API
 
 import json
 import os
+import io
+import sys
 from collections import defaultdict, Counter
 from typing import Dict, List, Tuple, Optional
 
@@ -237,6 +239,18 @@ def _print_summary(summary: Dict):
         print(f"  {cat:<30s} {cnt:>6d} {pct:>6.1f}%")
 
 
+class _TeeStream:
+    """Write to both the original stream and a StringIO buffer."""
+    def __init__(self, original, buffer):
+        self.original = original
+        self.buffer = buffer
+    def write(self, msg):
+        self.original.write(msg)
+        self.buffer.write(msg)
+    def flush(self):
+        self.original.flush()
+
+
 def compare_and_report(
     predictions_regular: List[Dict],
     predictions_augmented: List[Dict],
@@ -252,6 +266,11 @@ def compare_and_report(
     novel_tracker : list of dicts, optional
         Per-question novel-view selection info from evaluate_pipeline.py.
     """
+
+    # Capture all printed output so we can save it as a text file
+    _text_buf = io.StringIO()
+    _orig_stdout = sys.stdout
+    sys.stdout = _TeeStream(_orig_stdout, _text_buf)
 
     print(f"\n{'='*60}")
     print("  COMPARATIVE ANALYSIS: Regular vs. Novel-View Augmented")
@@ -359,12 +378,92 @@ def compare_and_report(
             both_wrong.append(info)
 
     _print_divider("═")
-    print(f"  Question-level transitions:")
+    print(f"  Question-level transitions (ALL questions):")
     print(f"    Both correct      : {len(both_right)}")
     print(f"    Both wrong        : {len(both_wrong)}")
     print(f"    Fixed by augment  : {len(fixed)}")
     print(f"    Broken by augment : {len(broken)}")
     _print_divider("═")
+
+    # ── Novel-view-only accuracy analysis ──
+    # Filter to questions where ≥1 novel view was in the final 9
+    all_transitions = both_right + both_wrong + fixed + broken
+    novel_used_qs = [q for q in all_transitions if q.get("novel_selected", 0) > 0]
+    novel_not_used_qs = [q for q in all_transitions if q.get("novel_selected", 0) == 0]
+
+    novel_impact = {}
+    if novel_used_qs:
+        n_total_nv = len(novel_used_qs)
+        n_reg_correct_nv = sum(1 for q in novel_used_qs if is_answer_correct(q["regular_ans"], q["gt"]))
+        n_aug_correct_nv = sum(1 for q in novel_used_qs if is_answer_correct(q["augmented_ans"], q["gt"]))
+        n_fixed_nv = sum(1 for q in novel_used_qs
+                         if not is_answer_correct(q["regular_ans"], q["gt"])
+                         and is_answer_correct(q["augmented_ans"], q["gt"]))
+        n_broken_nv = sum(1 for q in novel_used_qs
+                          if is_answer_correct(q["regular_ans"], q["gt"])
+                          and not is_answer_correct(q["augmented_ans"], q["gt"]))
+        reg_acc_nv = 100 * n_reg_correct_nv / n_total_nv if n_total_nv else 0
+        aug_acc_nv = 100 * n_aug_correct_nv / n_total_nv if n_total_nv else 0
+
+        novel_impact = {
+            "questions_with_novel_in_final_9": n_total_nv,
+            "regular_correct": n_reg_correct_nv,
+            "augmented_correct": n_aug_correct_nv,
+            "regular_accuracy_pct": round(reg_acc_nv, 2),
+            "augmented_accuracy_pct": round(aug_acc_nv, 2),
+            "accuracy_delta_pct": round(aug_acc_nv - reg_acc_nv, 2),
+            "fixed_by_augment": n_fixed_nv,
+            "broken_by_augment": n_broken_nv,
+            "details": novel_used_qs,
+        }
+
+        _print_divider("═")
+        print("  ACCURACY ON QUESTIONS WHERE NOVEL VIEWS WERE IN FINAL 9")
+        _print_divider("─")
+        print(f"  Questions with novel views in final 9: {n_total_nv}")
+        print(f"  Regular accuracy  : {n_reg_correct_nv}/{n_total_nv} ({reg_acc_nv:.2f}%)")
+        print(f"  Augmented accuracy: {n_aug_correct_nv}/{n_total_nv} ({aug_acc_nv:.2f}%)")
+        print(f"  Delta             : {aug_acc_nv - reg_acc_nv:+.2f}%")
+        print(f"  Fixed by novel    : {n_fixed_nv}")
+        print(f"  Broken by novel   : {n_broken_nv}")
+        print()
+        print(f"  Per-question breakdown:")
+        for q in novel_used_qs:
+            r_ok = is_answer_correct(q["regular_ans"], q["gt"])
+            a_ok = is_answer_correct(q["augmented_ans"], q["gt"])
+            status = "✓→✓" if r_ok and a_ok else "✗→✓ FIXED" if not r_ok and a_ok else "✓→✗ BROKEN" if r_ok and not a_ok else "✗→✗"
+            print(f"    [{q['scene_id']}] novel={q.get('novel_selected',0)} | {status}")
+            print(f"      Q: {q['question'][:70]}")
+            print(f"      GT: {q['gt']}  Reg: '{q['regular_ans'][:60]}'  Aug: '{q['augmented_ans'][:60]}'")
+        _print_divider("═")
+        print()
+
+    # Also compute accuracy for questions WITHOUT novel views (as control group)
+    novel_no_impact = {}
+    if novel_not_used_qs:
+        n_total_no = len(novel_not_used_qs)
+        n_reg_correct_no = sum(1 for q in novel_not_used_qs if is_answer_correct(q["regular_ans"], q["gt"]))
+        n_aug_correct_no = sum(1 for q in novel_not_used_qs if is_answer_correct(q["augmented_ans"], q["gt"]))
+        reg_acc_no = 100 * n_reg_correct_no / n_total_no if n_total_no else 0
+        aug_acc_no = 100 * n_aug_correct_no / n_total_no if n_total_no else 0
+
+        novel_no_impact = {
+            "questions_without_novel_in_final_9": n_total_no,
+            "regular_correct": n_reg_correct_no,
+            "augmented_correct": n_aug_correct_no,
+            "regular_accuracy_pct": round(reg_acc_no, 2),
+            "augmented_accuracy_pct": round(aug_acc_no, 2),
+            "accuracy_delta_pct": round(aug_acc_no - reg_acc_no, 2),
+        }
+
+        print(f"  CONTROL: Questions where NO novel views were in final 9")
+        _print_divider("─")
+        print(f"  Questions without novel views : {n_total_no}")
+        print(f"  Regular accuracy  : {n_reg_correct_no}/{n_total_no} ({reg_acc_no:.2f}%)")
+        print(f"  Augmented accuracy: {n_aug_correct_no}/{n_total_no} ({aug_acc_no:.2f}%)")
+        print(f"  Delta             : {aug_acc_no - reg_acc_no:+.2f}%  (should be ~0 with deterministic decoding)")
+        _print_divider("═")
+        print()
 
     # Show a few examples
     if fixed:
@@ -401,6 +500,8 @@ def compare_and_report(
             "fixed_by_augment": len(fixed),
             "broken_by_augment": len(broken),
         },
+        "novel_view_accuracy_impact": novel_impact,
+        "control_no_novel_accuracy": novel_no_impact,
         "fixed_questions": fixed,
         "broken_questions": broken,
         "wrong_regular": wrong_reg,
@@ -412,5 +513,14 @@ def compare_and_report(
     with open(report_path, "w") as f:
         json.dump(report, f, indent=2)
 
+    # Save the text summary
+    summary_path = os.path.join(output_dir, f"{tag}_summary.txt")
+    with open(summary_path, "w") as f:
+        f.write(_text_buf.getvalue())
+
     print(f"\n  Full report saved to: {report_path}")
+    print(f"  Text summary saved to: {summary_path}")
     print()
+
+    # Restore stdout
+    sys.stdout = _orig_stdout

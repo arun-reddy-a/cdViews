@@ -98,7 +98,13 @@ from qa_utils import custom_collate_fn
 def preprocess_qwen(sources, tokenizer, has_image=False, max_len=2048,
                     system_message="You are a helpful assistant."):
     """Tokenise a conversation for the Qwen-based LLaVA model."""
-    im_start, im_end = tokenizer.additional_special_tokens_ids
+    # In transformers >=5.x the TokenizersBackend may not expose
+    # additional_special_tokens_ids; use convert_tokens_to_ids instead.
+    if hasattr(tokenizer, "additional_special_tokens_ids"):
+        im_start, im_end = tokenizer.additional_special_tokens_ids
+    else:
+        im_start = tokenizer.convert_tokens_to_ids("<|im_start|>")
+        im_end = tokenizer.convert_tokens_to_ids("<|im_end|>")
     nl_tokens = tokenizer("\n").input_ids
     _system = tokenizer("system").input_ids + nl_tokens
 
@@ -325,8 +331,13 @@ def run_inference_for_question(
     model,
     image_processor,
     temperature: float = 0.2,
+    top_p: float = None,
+    num_beams: int = 1,
 ) -> str:
-    """Run the LLaVA VLM on the given images + question.  Returns answer string."""
+    """Run the LLaVA VLM on the given images + question.  Returns answer string.
+
+    Mirrors the inference logic in qa_inference.py eval_model() lines 199-226.
+    """
     num_image = len(image_files)
 
     question = line["situation"] + line["question"]
@@ -340,6 +351,7 @@ def run_inference_for_question(
 
     image_tensors = []
     for img_file in image_files:
+        # Support original (color/) and novel (novel-color/) paths
         if os.path.isabs(img_file):
             img_path = img_file
         elif img_file.startswith("novel-color/"):
@@ -355,10 +367,10 @@ def run_inference_for_question(
         output_ids = model.generate(
             input_ids,
             images=image_tensors,
-            do_sample=temperature > 0,
+            do_sample=True if temperature > 0 else False,
             temperature=temperature,
-            top_p=None,
-            num_beams=1,
+            top_p=top_p,
+            num_beams=num_beams,
             max_new_tokens=1024,
             use_cache=True,
         )
@@ -382,7 +394,8 @@ def evaluate(args):
     model_name = get_model_name_from_path(model_path)
     print(f"Loading VLM: {model_name} …")
     tokenizer, model, image_processor, context_len = load_pretrained_model(
-        model_path, args.model_base, model_name
+        model_path, args.model_base, model_name,
+        attn_implementation="sdpa",          # flash_attn binary is incompatible
     )
 
     print("Loading ViewSelector …")
@@ -513,6 +526,7 @@ def evaluate(args):
         ans_reg = run_inference_for_question(
             line, selected_regular, args.image_folder, scene_id,
             tokenizer, model, image_processor,
+            temperature=args.temperature, top_p=args.top_p, num_beams=args.num_beams,
         )
         answers_regular.append({
             "scene_id": scene_id,
@@ -577,6 +591,7 @@ def evaluate(args):
         ans_aug = run_inference_for_question(
             line, selected_augmented, args.image_folder, scene_id,
             tokenizer, model, image_processor,
+            temperature=args.temperature, top_p=args.top_p, num_beams=args.num_beams,
         )
         answers_augmented.append({
             "scene_id": scene_id,
@@ -635,7 +650,7 @@ def main():
     parser.add_argument("--cfg_file", type=str, default="../cfgs/QA.yaml",
                         help="CDViews config file (default: ../cfgs/QA.yaml)")
     parser.add_argument("--model-base", type=str, default=None)
-    parser.add_argument("--temperature", type=float, default=0.2)
+    parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--top_p", type=float, default=None)
     parser.add_argument("--num_beams", type=int, default=1)
 
