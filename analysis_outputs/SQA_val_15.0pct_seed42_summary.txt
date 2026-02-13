@@ -1,0 +1,233 @@
+
+============================================================
+  COMPARATIVE ANALYSIS: Regular vs. Novel-View Augmented
+============================================================
+════════════════════════════════════════════════════════════
+
+  Pipeline : Regular CDViews
+  Total    : 489
+  Correct  : 181
+  Wrong    : 308
+  Accuracy : 37.01%
+  Total hallucinations: 83
+
+  Error Category                  Count       %
+  ────────────────────────────── ────── ───────
+  wrong_spatial                     174   56.5%
+  unrelated_hallucination            50   16.2%
+  hallucinated_object                32   10.4%
+  wrong_color                        24    7.8%
+  wrong_yes_no                       14    4.5%
+  wrong_count                        10    3.2%
+  wrong_object                        3    1.0%
+  hallucinated_color                  1    0.3%
+────────────────────────────────────────────────────────────
+
+  Pipeline : Augmented CDViews (+ novel views)
+  Total    : 489
+  Correct  : 184
+  Wrong    : 305
+  Accuracy : 37.63%
+  Total hallucinations: 82
+
+  Error Category                  Count       %
+  ────────────────────────────── ────── ───────
+  wrong_spatial                     172   56.4%
+  unrelated_hallucination            48   15.7%
+  hallucinated_object                33   10.8%
+  wrong_color                        25    8.2%
+  wrong_yes_no                       13    4.3%
+  wrong_count                        10    3.3%
+  wrong_object                        3    1.0%
+  hallucinated_color                  1    0.3%
+════════════════════════════════════════════════════════════
+
+  Metric                            Regular  Augmented      Delta
+  ────────────────────────────── ────────── ────────── ──────────
+  Accuracy (%)                        37.01      37.63      +0.62
+  Total Wrong                           308        305         -3
+  Total Hallucination                    83         82         -1
+
+  Error Category                    Regular  Augmented      Delta
+  ────────────────────────────── ────────── ────────── ──────────
+  hallucinated_color                      1          1         +0
+  hallucinated_object                    32         33         +1
+  unrelated_hallucination                50         48         -2
+  wrong_color                            24         25         +1
+  wrong_count                            10         10         +0
+  wrong_object                            3          3         +0
+  wrong_spatial                         174        172         -2
+  wrong_yes_no                           14         13         -1
+
+════════════════════════════════════════════════════════════
+  NOVEL VIEW SELECTION BY VIEW SELECTOR
+────────────────────────────────────────────────────────────
+  Total questions evaluated     : 489
+  Questions with ≥1 novel view  : 30 (6.1%)
+  Total novel views selected    : 59 (out of 4890 available)
+  Avg novel views per question  : 0.12
+  Max novel views in one question: 5
+
+  Distribution of novel views selected per question:
+    # Novel Views     # Questions
+  ─────────────── ───────────────
+                0             459
+                1              15
+                2               8
+                3               3
+                4               1
+                5               3
+════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════
+  Question-level transitions (ALL questions):
+    Both correct      : 175
+    Both wrong        : 299
+    Fixed by augment  : 9
+    Broken by augment : 6
+════════════════════════════════════════════════════════════
+════════════════════════════════════════════════════════════
+  ACCURACY ON QUESTIONS WHERE NOVEL VIEWS WERE IN FINAL 9
+────────────────────────────────────────────────────────────
+  Questions with novel views in final 9: 30
+  Regular accuracy  : 9/30 (30.00%)
+  Augmented accuracy: 9/30 (30.00%)
+  Delta             : +0.00%
+  Fixed by novel    : 0
+  Broken by novel   : 0
+
+  Per-question breakdown:
+    [scene0077_00] novel=2 | ✓→✓
+      Q: Is the number of trash cans on my left odd or even?
+      GT: ['even']  Reg: 'even,'  Aug: 'even,'
+    [scene0063_00] novel=2 | ✓→✓
+      Q: Is the table made out of wood or metal?
+      GT: ['wood']  Reg: 'wood,'  Aug: 'wood,'
+    [scene0077_00] novel=1 | ✓→✓
+      Q: Which is bigger between the copier to my 10 o'clock direction and the 
+      GT: ['copier']  Reg: 'the copier is larger than the trash can to your right.'  Aug: 'the copier is larger than the trash can to your right.'
+    [scene0019_00] novel=1 | ✓→✓
+      Q: Is the amount of doors odd or even?
+      GT: ['even']  Reg: 'even'  Aug: 'even'
+    [scene0019_00] novel=2 | ✓→✓
+      Q: Is the door to my right open or close?
+      GT: ['open']  Reg: 'open'  Aug: 'open'
+    [scene0077_00] novel=2 | ✓→✓
+      Q: If the copier in front of me breaks, in what direction is there anothe
+      GT: ['behind']  Reg: 'behind'  Aug: 'behind'
+    [scene0342_00] novel=2 | ✓→✓
+      Q: What is on my right side that you put on?
+      GT: ['backpack']  Reg: 'backpack,'  Aug: 'backpack,'
+    [scene0527_00] novel=1 | ✓→✓
+      Q: On which side should I move to leave the room?
+      GT: ['right']  Reg: 'right'  Aug: 'right'
+    [scene0081_00] novel=1 | ✓→✓
+      Q: If I turn to the right , how many tables will I see?
+      GT: ['two']  Reg: 'two,'  Aug: 'two,'
+    [scene0019_00] novel=5 | ✗→✗
+      Q: If I wanted to leave the room. What direction should I go?
+      GT: ['forward']  Reg: 'to leave the room, you should head towards the door. based o'  Aug: 'to leave the room, you should head towards the door. based o'
+    [scene0697_00] novel=1 | ✗→✗
+      Q: Which object behind me is commonly described as a toy for girls?
+      GT: ['unknown']  Reg: 'doll'  Aug: 'doll'
+    [scene0019_00] novel=3 | ✗→✗
+      Q: What can I insert into the vending machine behind me to buy something?
+      GT: ['money']  Reg: 'coins,'  Aug: 'coins,'
+    [scene0342_00] novel=2 | ✗→✗
+      Q: What is the color of the chairs in front of me?
+      GT: ['brown']  Reg: 'blue,'  Aug: 'blue,'
+    [scene0063_00] novel=1 | ✗→✗
+      Q: Is the table round or rectangle?
+      GT: ['rectangle']  Reg: 'round,'  Aug: 'round,'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: Am I in the washroom?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0342_00] novel=5 | ✗→✗
+      Q: Are the chairs in front of me wood or leather?
+      GT: ['leather']  Reg: 'wood,'  Aug: 'wood,'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: Which one is bigger, the copier to my left or to my right?
+      GT: ['right']  Reg: 'copier to the left,'  Aug: 'copier to the left,'
+    [scene0655_00] novel=2 | ✗→✗
+      Q: Is the amount of whiteboard I am facing odd or even?
+      GT: ['odd']  Reg: 'even'  Aug: 'even'
+    [scene0019_00] novel=5 | ✗→✗
+      Q: How many chairs are on the right side of the couch that is on my left?
+      GT: ['two']  Reg: 'zero,'  Aug: 'zero,'
+    [scene0019_00] novel=4 | ✗→✗
+      Q: What color is the door in front of me?
+      GT: ['brown']  Reg: 'white,'  Aug: 'white,'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: Which object behind me may have jammed paper inside?
+      GT: ['printer']  Reg: 'copier,'  Aug: 'copier,'
+    [scene0342_00] novel=3 | ✗→✗
+      Q: Who might block my view of the whiteboard?
+      GT: ['unknown']  Reg: 'the person sitting in the chair directly in front of you, wh'  Aug: 'the person sitting in the chair directly in front of you, wh'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: How many doors are on my left?
+      GT: ['two']  Reg: 'one,'  Aug: 'one,'
+    [scene0342_00] novel=1 | ✗→✗
+      Q: I am about to start writing on the whiteboard, which direction should 
+      GT: ['left']  Reg: 'to start writing on the whiteboard, you should turn to your '  Aug: 'to start writing on the whiteboard, you should turn to your '
+    [scene0081_00] novel=1 | ✗→✗
+      Q: What integer can the amount of couch on my left be divided by?
+      GT: ['three']  Reg: '2'  Aug: '2'
+    [scene0527_00] novel=1 | ✗→✗
+      Q: What is behind me making my butt feel wet?
+      GT: ['sink']  Reg: 'shower'  Aug: 'shower'
+    [scene0329_00] novel=2 | ✗→✗
+      Q: How many chairs are on my right?
+      GT: ['three']  Reg: 'one,'  Aug: 'one,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: What pattern is seen on the couch in front of me?
+      GT: ['stripes']  Reg: 'solid,'  Aug: 'solid,'
+    [scene0077_00] novel=3 | ✗→✗
+      Q: How many printers are directly under the shelf to my left?
+      GT: ['one']  Reg: 'two,'  Aug: 'two,'
+    [scene0019_00] novel=1 | ✗→✗
+      Q: How many lamps are behind me?
+      GT: ['one']  Reg: 'two,'  Aug: 'two,'
+════════════════════════════════════════════════════════════
+
+  CONTROL: Questions where NO novel views were in final 9
+────────────────────────────────────────────────────────────
+  Questions without novel views : 459
+  Regular accuracy  : 172/459 (37.47%)
+  Augmented accuracy: 175/459 (38.13%)
+  Delta             : +0.65%  (should be ~0 with deterministic decoding)
+════════════════════════════════════════════════════════════
+
+
+  ── Examples FIXED by augmentation ──
+    [scene0207_00] Q: How many heating elements are on the stove to my right?
+       GT: ['four']  |  Reg: 'two,'  →  Aug: 'four,'
+       Novel views in final 9: 0
+    [scene0629_00] Q: Can I be able to water the plant from my current position without movi
+       GT: ['no']  |  Reg: 'based on the image provided, it appears that you are standing in front of a cabinet and there is a plant to your right. if you are facing the cabinet across the room, you would need to move to the left side of the cabinet to reach the plant directly. however, if the plant is positioned in such a way that it can be watered from the direction you are currently facing without moving, it might be possible.'  →  Aug: 'based on the image provided, it appears that you are standing in front of a cabinet and there is a plant to your right. if you are facing the cabinet across the room, you would need to move to the side or behind the cabinet to access the plant for watering purposes. without moving, you would not be able to reach the plant from your current position.'
+       Novel views in final 9: 0
+    [scene0549_00] Q: What is on the right side of the door that allows more light into the 
+       GT: ['window']  |  Reg: 'curtain,'  →  Aug: 'window,'
+       Novel views in final 9: 0
+    [scene0559_00] Q: What is the shape of this table?
+       GT: ['rectangular']  |  Reg: 'rectangle'  →  Aug: 'rectangular,'
+       Novel views in final 9: 0
+    [scene0552_00] Q: Is the amount of table I am facing odd or even?
+       GT: ['odd']  |  Reg: 'even'  →  Aug: 'the image you've provided shows a table, but it's not possible to determine whether the table is odd or even in terms of its dimensions (length and width) without more specific information. the image only shows a portion of the table, so we can't ascertain if the overall dimensions are odd or even. if you need to know the dimensions of the entire table, you would need additional information or a view of the entire table from different angles.'
+       Novel views in final 9: 0
+
+  ── Examples BROKEN by augmentation ──
+    [scene0164_00] Q: Am I standing closer to the refrigerator to my left or the stove behin
+       GT: ['refrigerator']  |  Reg: 'you are standing closer to the refrigerator on your left.'  →  Aug: 'left'
+       Novel views in final 9: 0
+    [scene0144_00] Q: I there any more space in front that I can move forward?
+       GT: ['no']  |  Reg: 'based on the image, it appears that there is enough space in front of the dresser for you to move forward with a chair within reach. the chair seems to be positioned at a distance from the dresser, allowing for some movement between them. however, if you need more space or have any specific requirements, you might want to consider moving the chair closer to the dresser or clearing additional space as needed.'  →  Aug: 'yes'
+       Novel views in final 9: 0
+    [scene0655_00] Q: What color are the chairs in front of me?
+       GT: ['red']  |  Reg: 'red,'  →  Aug: 'blue,'
+       Novel views in final 9: 0
+    [scene0696_00] Q: Which way do I turn to find the mattress?
+       GT: ['right']  |  Reg: 'to find the pillow on the table, you would turn to your right.'  →  Aug: 'to find the way to turn and take a nap, you would need to look for the chair and the table. since you're already sitting on the chair by the table, you would likely turn around to face the other side of the table where the pillow is placed.'
+       Novel views in final 9: 0
+    [scene0131_00] Q: How many chairs are on my right?
+       GT: ['one']  |  Reg: 'one,'  →  Aug: 'two,'
+       Novel views in final 9: 0

@@ -558,8 +558,10 @@ def evaluate(args):
 
         novel_feats = novel_feats_cache.get(scene_id, {})
 
-        # Build the question text for ranking
-        q_text = line["situation"] + line["question"]
+        # Build the question text for ranking — use question-only to match
+        # the original ViewLabelDataset (dataset.py line 49), which the
+        # ViewSelector was trained on.  Do NOT include the situation prefix.
+        q_text = line["question"]
 
         # Rank all images together
         combined_ranked = rank_augmented_views(

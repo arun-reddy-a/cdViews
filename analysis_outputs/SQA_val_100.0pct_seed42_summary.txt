@@ -1,0 +1,844 @@
+
+============================================================
+  COMPARATIVE ANALYSIS: Regular vs. Novel-View Augmented
+============================================================
+════════════════════════════════════════════════════════════
+
+  Pipeline : Regular CDViews
+  Total    : 3261
+  Correct  : 1246
+  Wrong    : 2015
+  Accuracy : 38.21%
+  Total hallucinations: 548
+
+  Error Category                  Count       %
+  ────────────────────────────── ────── ───────
+  wrong_spatial                    1135   56.3%
+  unrelated_hallucination           366   18.2%
+  hallucinated_object               176    8.7%
+  wrong_yes_no                      137    6.8%
+  wrong_color                       112    5.6%
+  wrong_count                        60    3.0%
+  wrong_object                       22    1.1%
+  hallucinated_color                  6    0.3%
+  other                               1    0.0%
+────────────────────────────────────────────────────────────
+
+  Pipeline : Augmented CDViews (+ novel views)
+  Total    : 3261
+  Correct  : 1257
+  Wrong    : 2004
+  Accuracy : 38.55%
+  Total hallucinations: 547
+
+  Error Category                  Count       %
+  ────────────────────────────── ────── ───────
+  wrong_spatial                    1126   56.2%
+  unrelated_hallucination           363   18.1%
+  hallucinated_object               178    8.9%
+  wrong_yes_no                      133    6.6%
+  wrong_color                       114    5.7%
+  wrong_count                        62    3.1%
+  wrong_object                       21    1.0%
+  hallucinated_color                  6    0.3%
+  other                               1    0.0%
+════════════════════════════════════════════════════════════
+
+  Metric                            Regular  Augmented      Delta
+  ────────────────────────────── ────────── ────────── ──────────
+  Accuracy (%)                        38.21      38.55      +0.34
+  Total Wrong                          2015       2004        -11
+  Total Hallucination                   548        547         -1
+
+  Error Category                    Regular  Augmented      Delta
+  ────────────────────────────── ────────── ────────── ──────────
+  hallucinated_color                      6          6         +0
+  hallucinated_object                   176        178         +2
+  other                                   1          1         +0
+  unrelated_hallucination               366        363         -3
+  wrong_color                           112        114         +2
+  wrong_count                            60         62         +2
+  wrong_object                           22         21         -1
+  wrong_spatial                        1135       1126         -9
+  wrong_yes_no                          137        133         -4
+
+════════════════════════════════════════════════════════════
+  NOVEL VIEW SELECTION BY VIEW SELECTOR
+────────────────────────────────────────────────────────────
+  Total questions evaluated     : 3261
+  Questions with ≥1 novel view  : 232 (7.1%)
+  Total novel views selected    : 438 (out of 32610 available)
+  Avg novel views per question  : 0.13
+  Max novel views in one question: 7
+
+  Distribution of novel views selected per question:
+    # Novel Views     # Questions
+  ─────────────── ───────────────
+                0            3029
+                1             128
+                2              44
+                3              38
+                4              11
+                5               5
+                6               3
+                7               3
+════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════
+  Question-level transitions (ALL questions):
+    Both correct      : 1217
+    Both wrong        : 1975
+    Fixed by augment  : 40
+    Broken by augment : 29
+════════════════════════════════════════════════════════════
+════════════════════════════════════════════════════════════
+  ACCURACY ON QUESTIONS WHERE NOVEL VIEWS WERE IN FINAL 9
+────────────────────────────────────────────────────────────
+  Questions with novel views in final 9: 232
+  Regular accuracy  : 85/232 (36.64%)
+  Augmented accuracy: 86/232 (37.07%)
+  Delta             : +0.43%
+  Fixed by novel    : 1
+  Broken by novel   : 0
+
+  Per-question breakdown:
+    [scene0077_00] novel=2 | ✓→✓
+      Q: Is the number of trash cans on my left odd or even?
+      GT: ['even']  Reg: 'even,'  Aug: 'even,'
+    [scene0063_00] novel=2 | ✓→✓
+      Q: Is the table made out of wood or metal?
+      GT: ['wood']  Reg: 'wood,'  Aug: 'wood,'
+    [scene0077_00] novel=1 | ✓→✓
+      Q: Which is bigger between the copier to my 10 o'clock direction and the 
+      GT: ['copier']  Reg: 'the copier is larger than the trash can to your right.'  Aug: 'the copier is larger than the trash can to your right.'
+    [scene0019_00] novel=1 | ✓→✓
+      Q: Is the amount of doors odd or even?
+      GT: ['even']  Reg: 'even'  Aug: 'even'
+    [scene0019_00] novel=2 | ✓→✓
+      Q: Is the door to my right open or close?
+      GT: ['open']  Reg: 'open'  Aug: 'open'
+    [scene0077_00] novel=2 | ✓→✓
+      Q: If the copier in front of me breaks, in what direction is there anothe
+      GT: ['behind']  Reg: 'behind'  Aug: 'behind'
+    [scene0342_00] novel=2 | ✓→✓
+      Q: What is on my right side that you put on?
+      GT: ['backpack']  Reg: 'backpack,'  Aug: 'backpack,'
+    [scene0527_00] novel=1 | ✓→✓
+      Q: On which side should I move to leave the room?
+      GT: ['right']  Reg: 'right'  Aug: 'right'
+    [scene0081_00] novel=1 | ✓→✓
+      Q: If I turn to the right , how many tables will I see?
+      GT: ['two']  Reg: 'two,'  Aug: 'two,'
+    [scene0527_00] novel=1 | ✓→✓
+      Q: What direction should I turn to leave the room?
+      GT: ['left']  Reg: 'to leave the room, you should turn left.'  Aug: 'to leave the room, you should turn left.'
+    [scene0342_00] novel=2 | ✓→✓
+      Q: What is the backpack sitting on?
+      GT: ['table']  Reg: 'table,'  Aug: 'table,'
+    [scene0658_00] novel=1 | ✓→✓
+      Q: Does the color of the mattress on my bed resemble that of coal?
+      GT: ['yes']  Reg: 'yes'  Aug: 'yes'
+    [scene0527_00] novel=1 | ✓→✓
+      Q: Is the area I am standing on dark or bright in the bathroom?
+      GT: ['dark']  Reg: 'dark,'  Aug: 'dark,'
+    [scene0081_00] novel=1 | ✓→✓
+      Q: Can the amount of table in front of me be divided by three?
+      GT: ['yes']  Reg: 'yes'  Aug: 'yes'
+    [scene0019_00] novel=3 | ✓→✓
+      Q: What is behind me that has chips and soda for sale?
+      GT: ['vending machine']  Reg: 'vending machine,'  Aug: 'vending machine,'
+    [scene0019_00] novel=1 | ✓→✓
+      Q: What can I use on the vending machine in front of me if I want to use 
+      GT: ['coins']  Reg: 'coins,'  Aug: 'coins,'
+    [scene0081_00] novel=1 | ✓→✓
+      Q: How many corners does the ottoman have?
+      GT: ['four']  Reg: 'four,'  Aug: 'four,'
+    [scene0328_00] novel=1 | ✓→✓
+      Q: What is the weakest point of the window in front of me?
+      GT: ['glass']  Reg: 'the weakest point of the window in front of you is the glass'  Aug: 'the weakest point of the window in front of you is the glass'
+    [scene0316_00] novel=1 | ✓→✓
+      Q: What is the color of the wall to my left?
+      GT: ['white']  Reg: 'white,'  Aug: 'white,'
+    [scene0081_00] novel=1 | ✓→✓
+      Q: What color are the tables?
+      GT: ['brown']  Reg: 'brown,'  Aug: 'brown,'
+    [scene0697_00] novel=1 | ✓→✓
+      Q: How many TV's are in front of me?
+      GT: ['one']  Reg: 'one,'  Aug: 'one,'
+    [scene0342_00] novel=3 | ✓→✓
+      Q: What furntiure is directly in front of me?
+      GT: ['table']  Reg: 'table,'  Aug: 'table,'
+    [scene0342_00] novel=1 | ✓→✓
+      Q: Which way should I move to get a better view?
+      GT: ['left']  Reg: 'to get a better view, you should move slightly to the left o'  Aug: 'to get a better view, you should move slightly to the left o'
+    [scene0342_00] novel=4 | ✓→✓
+      Q: Is the amount of chairs at my left odd or even?
+      GT: ['odd']  Reg: 'odd,'  Aug: 'odd,'
+    [scene0081_00] novel=1 | ✓→✓
+      Q: What color is the round table to my left?
+      GT: ['brown']  Reg: 'brown,'  Aug: 'brown,'
+    [scene0342_00] novel=1 | ✓→✓
+      Q: Can I see backpack at where I am standing?
+      GT: ['yes']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0081_00] novel=1 | ✓→✓
+      Q: What 3 dimensional shape is the ottoman that in sitting on?
+      GT: ['cube']  Reg: 'cube,'  Aug: 'cube,'
+    [scene0342_00] novel=1 | ✓→✓
+      Q: From my current position, can I be able to see the set of arranged cha
+      GT: ['no']  Reg: 'no, you cannot see the set of arranged chairs without turnin'  Aug: 'no, you cannot see the set of arranged chairs without turnin'
+    [scene0357_00] novel=1 | ✓→✓
+      Q: The stairs in front of lead to what, upstairs or downstairs?
+      GT: ['upstairs']  Reg: 'upstairs'  Aug: 'upstairs'
+    [scene0095_00] novel=3 | ✓→✓
+      Q: Is there writing on the whiteboard in front of me?
+      GT: ['no']  Reg: 'no'  Aug: 'no'
+    [scene0328_00] novel=1 | ✓→✓
+      Q: Is the window in front of me large or small?
+      GT: ['large']  Reg: 'large,'  Aug: 'large,'
+    [scene0077_00] novel=3 | ✓→✓
+      Q: How many copiers are to my right?
+      GT: ['one']  Reg: 'one,'  Aug: 'one,'
+    [scene0019_00] novel=1 | ✓→✓
+      Q: Is a trash can in front of me?
+      GT: ['no']  Reg: 'no,'  Aug: 'no,'
+    [scene0019_00] novel=1 | ✓→✓
+      Q: Is the door in front of me open or closed?
+      GT: ['closed']  Reg: 'closed,'  Aug: 'closed,'
+    [scene0342_00] novel=1 | ✓→✓
+      Q: Is the space that I can move forward from my current direction?
+      GT: ['yes']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0019_00] novel=1 | ✓→✓
+      Q: Is the door in front of me that is brown open or closed?
+      GT: ['closed']  Reg: 'closed,'  Aug: 'closed,'
+    [scene0019_00] novel=3 | ✓→✓
+      Q: Can the amount of vending machines behind me be divided by three?
+      GT: ['no']  Reg: 'no'  Aug: 'no'
+    [scene0357_00] novel=3 | ✓→✓
+      Q: Are the curtains in front of me closed or open?
+      GT: ['closed']  Reg: 'closed,'  Aug: 'closed,'
+    [scene0342_00] novel=1 | ✓→✓
+      Q: If I wanted to carry something on my back, what would I pick up in fro
+      GT: ['backpack']  Reg: 'backpack'  Aug: 'backpack'
+    [scene0081_00] novel=1 | ✓→✓
+      Q: What shape is the table in front of me?
+      GT: ['round']  Reg: 'round,'  Aug: 'round,'
+    [scene0077_00] novel=4 | ✓→✓
+      Q: What part of the window is the most fragile in front of me?
+      GT: ['glass']  Reg: 'glass,'  Aug: 'glass,'
+    [scene0077_00] novel=1 | ✓→✓
+      Q: Is it possible to reach the cabinet on my left without moving?
+      GT: ['no']  Reg: 'no'  Aug: 'no'
+    [scene0077_00] novel=3 | ✓→✓
+      Q: Which copier is bigger one behind me or to my left side?
+      GT: ['left side']  Reg: 'left'  Aug: 'left'
+    [scene0077_00] novel=3 | ✓→✓
+      Q: If I turn right can I see out of the window?
+      GT: ['yes']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0081_00] novel=1 | ✓→✓
+      Q: What brown object is behind me?
+      GT: ['ottoman']  Reg: 'ottoman,'  Aug: 'ottoman,'
+    [scene0558_00] novel=1 | ✓→✓
+      Q: What color is the backpack on the chair in front of me?
+      GT: ['blue']  Reg: 'blue,'  Aug: 'blue,'
+    [scene0077_00] novel=2 | ✓→✓
+      Q: What direction do I have to go to leave the room?
+      GT: ['right']  Reg: 'to leave the room, you should head towards the door. based o'  Aug: 'to leave the room, you should head towards the door. based o'
+    [scene0019_00] novel=7 | ✓→✓
+      Q: What in front of me that dispenses chips?
+      GT: ['vending machine']  Reg: 'vending machine,'  Aug: 'vending machine,'
+    [scene0019_00] novel=3 | ✓→✓
+      Q: Can I purchase some chips from the vending machine from where I am sta
+      GT: ['yes']  Reg: 'yes, you can purchase some chips from the vending machine.'  Aug: 'yes, you can purchase some chips from the vending machine.'
+    [scene0077_00] novel=3 | ✓→✓
+      Q: Which one is closer to the copier in front of me, a shelf or a window?
+      GT: ['shelf']  Reg: 'shelf,'  Aug: 'shelf,'
+    [scene0342_00] novel=1 | ✓→✓
+      Q: How are the chairs to my left organize?
+      GT: ['in rows']  Reg: 'the chairs to your left are organized in rows.'  Aug: 'the chairs to your left are organized in rows.'
+    [scene0077_00] novel=1 | ✓→✓
+      Q: Can I leave the room by moving forward?
+      GT: ['yes']  Reg: 'yes'  Aug: 'yes'
+    [scene0316_00] novel=2 | ✓→✓
+      Q: How many water fountains are there in front of me?
+      GT: ['two']  Reg: 'two,'  Aug: 'two,'
+    [scene0081_00] novel=1 | ✓→✓
+      Q: How many ottomans are there?
+      GT: ['two']  Reg: 'two,'  Aug: 'two,'
+    [scene0342_00] novel=4 | ✓→✓
+      Q: How many chairs are on my right?
+      GT: ['two']  Reg: 'two,'  Aug: 'two,'
+    [scene0081_00] novel=1 | ✓→✓
+      Q: Does the couch run along my left or right?
+      GT: ['left']  Reg: 'left,'  Aug: 'left,'
+    [scene0081_00] novel=1 | ✓→✓
+      Q: Is the amount of ottoman in the room odd or even?
+      GT: ['even']  Reg: 'even,'  Aug: 'even,'
+    [scene0081_00] novel=1 | ✓→✓
+      Q: How many ottomans are in the room?
+      GT: ['two']  Reg: 'two,'  Aug: 'two,'
+    [scene0063_00] novel=2 | ✓→✓
+      Q: What color is the table in front of me?
+      GT: ['brown']  Reg: 'brown,'  Aug: 'brown,'
+    [scene0019_00] novel=1 | ✓→✓
+      Q: How many trash cans are to the left?
+      GT: ['one']  Reg: 'one,'  Aug: 'one,'
+    [scene0077_00] novel=2 | ✓→✓
+      Q: How many shelves can I see if I turn my head backwards?
+      GT: ['two']  Reg: 'two,'  Aug: 'two,'
+    [scene0527_00] novel=1 | ✓→✓
+      Q: What is nearer me, the table or the bathroom vanity?
+      GT: ['table']  Reg: 'table'  Aug: 'table'
+    [scene0342_00] novel=2 | ✓→✓
+      Q: Is the backpack sitting on anything?
+      GT: ['yes']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0077_00] novel=1 | ✓→✓
+      Q: Which trash can is smaller, the one behind me or the one to my right?
+      GT: ['right']  Reg: 'the trash can to your right is smaller than the one behind y'  Aug: 'the trash can to your right is smaller than the one behind y'
+    [scene0081_00] novel=1 | ✓→✓
+      Q: What is the color of the tables?
+      GT: ['brown']  Reg: 'brown,'  Aug: 'brown,'
+    [scene0019_00] novel=2 | ✓→✓
+      Q: What object behind me needs to be emptied on a regular basis?
+      GT: ['trash can']  Reg: 'trash can'  Aug: 'trash can'
+    [scene0527_00] novel=1 | ✓→✓
+      Q: To what direction should I move to open the curtains?
+      GT: ['right']  Reg: 'to the right'  Aug: 'to the right'
+    [scene0527_00] novel=4 | ✓→✓
+      Q: What is in front of me that is long and draped over the window?
+      GT: ['curtain']  Reg: 'curtain,'  Aug: 'curtain,'
+    [scene0342_00] novel=4 | ✓→✓
+      Q: How are the chairs organized in front of me?
+      GT: ['rows']  Reg: 'the chairs are organized in rows, with each row slightly set'  Aug: 'the chairs are organized in rows, with each row slightly set'
+    [scene0342_00] novel=1 | ✓→✓
+      Q: What is a rectangle and has legs in front of me?
+      GT: ['table']  Reg: 'table'  Aug: 'table'
+    [scene0077_00] novel=1 | ✓→✓
+      Q: What is behind my left on counter that uses paper and ink?
+      GT: ['printer']  Reg: 'printer,'  Aug: 'printer,'
+    [scene0697_00] novel=2 | ✓→✓
+      Q: Is the picture on the wall I am facing on the left or on the right of 
+      GT: ['left']  Reg: 'left,'  Aug: 'left,'
+    [scene0019_00] novel=1 | ✓→✓
+      Q: How many vending machines are behind me to the right?
+      GT: ['one']  Reg: 'one,'  Aug: 'one,'
+    [scene0019_00] novel=1 | ✓→✓
+      Q: Is the lamp to my left side on or off?
+      GT: ['off']  Reg: 'off,'  Aug: 'off,'
+    [scene0697_00] novel=1 | ✓→✓
+      Q: The TV to my right is sitting on top of what furniture?
+      GT: ['dresser']  Reg: 'dresser,'  Aug: 'dresser,'
+    [scene0019_00] novel=1 | ✓→✓
+      Q: How many doors are in front of me?
+      GT: ['one']  Reg: 'one,'  Aug: 'one,'
+    [scene0019_00] novel=1 | ✓→✓
+      Q: What machine is in front of me that dispenses snacks?
+      GT: ['vending machine']  Reg: 'vending machine,'  Aug: 'vending machine,'
+    [scene0077_00] novel=2 | ✓→✓
+      Q: If I turn around is there another copier behind me?
+      GT: ['yes']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0081_00] novel=1 | ✓→✓
+      Q: How many round tables are to my left excluding one in front of me?
+      GT: ['two']  Reg: 'two,'  Aug: 'two,'
+    [scene0077_00] novel=3 | ✓→✓
+      Q: How many copiers are to my left side?
+      GT: ['one']  Reg: 'one,'  Aug: 'one,'
+    [scene0019_00] novel=1 | ✓→✓
+      Q: What color is the closed door in front of me?
+      GT: ['brown']  Reg: 'brown,'  Aug: 'brown,'
+    [scene0081_00] novel=1 | ✓→✓
+      Q: What is on the right side of the table in front of me?
+      GT: ['couch']  Reg: 'couch,'  Aug: 'couch,'
+    [scene0527_00] novel=1 | ✓→✓
+      Q: Am I in the bathroom?
+      GT: ['yes']  Reg: 'yes'  Aug: 'yes'
+    [scene0077_00] novel=2 | ✓→✓
+      Q: Which direction do I need to go to leave the room?
+      GT: ['left']  Reg: 'to leave the room, you should head towards the door. based o'  Aug: 'to leave the room, you should head towards the door. based o'
+    [scene0077_00] novel=2 | ✓→✓
+      Q: Which direction should I turn if I want to exit the room?
+      GT: ['left']  Reg: 'left,'  Aug: 'left,'
+    [scene0019_00] novel=5 | ✗→✗
+      Q: If I wanted to leave the room. What direction should I go?
+      GT: ['forward']  Reg: 'to leave the room, you should head towards the door. based o'  Aug: 'to leave the room, you should head towards the door. based o'
+    [scene0697_00] novel=1 | ✗→✗
+      Q: Which object behind me is commonly described as a toy for girls?
+      GT: ['unknown']  Reg: 'doll'  Aug: 'doll'
+    [scene0019_00] novel=3 | ✗→✗
+      Q: What can I insert into the vending machine behind me to buy something?
+      GT: ['money']  Reg: 'coins,'  Aug: 'coins,'
+    [scene0342_00] novel=2 | ✗→✗
+      Q: What is the color of the chairs in front of me?
+      GT: ['brown']  Reg: 'blue,'  Aug: 'blue,'
+    [scene0063_00] novel=1 | ✗→✗
+      Q: Is the table round or rectangle?
+      GT: ['rectangle']  Reg: 'round,'  Aug: 'round,'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: Am I in the washroom?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0342_00] novel=5 | ✗→✗
+      Q: Are the chairs in front of me wood or leather?
+      GT: ['leather']  Reg: 'wood,'  Aug: 'wood,'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: Which one is bigger, the copier to my left or to my right?
+      GT: ['right']  Reg: 'copier to the left,'  Aug: 'copier to the left,'
+    [scene0655_00] novel=2 | ✗→✗
+      Q: Is the amount of whiteboard I am facing odd or even?
+      GT: ['odd']  Reg: 'even'  Aug: 'even'
+    [scene0019_00] novel=5 | ✗→✗
+      Q: How many chairs are on the right side of the couch that is on my left?
+      GT: ['two']  Reg: 'zero,'  Aug: 'zero,'
+    [scene0019_00] novel=4 | ✗→✗
+      Q: What color is the door in front of me?
+      GT: ['brown']  Reg: 'white,'  Aug: 'white,'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: Which object behind me may have jammed paper inside?
+      GT: ['printer']  Reg: 'copier,'  Aug: 'copier,'
+    [scene0342_00] novel=3 | ✗→✗
+      Q: Who might block my view of the whiteboard?
+      GT: ['unknown']  Reg: 'the person sitting in the chair directly in front of you, wh'  Aug: 'the person sitting in the chair directly in front of you, wh'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: How many doors are on my left?
+      GT: ['two']  Reg: 'one,'  Aug: 'one,'
+    [scene0342_00] novel=1 | ✗→✗
+      Q: I am about to start writing on the whiteboard, which direction should 
+      GT: ['left']  Reg: 'to start writing on the whiteboard, you should turn to your '  Aug: 'to start writing on the whiteboard, you should turn to your '
+    [scene0081_00] novel=1 | ✗→✗
+      Q: What integer can the amount of couch on my left be divided by?
+      GT: ['three']  Reg: '2'  Aug: '2'
+    [scene0527_00] novel=1 | ✗→✗
+      Q: What is behind me making my butt feel wet?
+      GT: ['sink']  Reg: 'shower'  Aug: 'shower'
+    [scene0329_00] novel=2 | ✗→✗
+      Q: How many chairs are on my right?
+      GT: ['three']  Reg: 'one,'  Aug: 'one,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: What pattern is seen on the couch in front of me?
+      GT: ['stripes']  Reg: 'solid,'  Aug: 'solid,'
+    [scene0077_00] novel=3 | ✗→✗
+      Q: How many printers are directly under the shelf to my left?
+      GT: ['one']  Reg: 'two,'  Aug: 'two,'
+    [scene0019_00] novel=1 | ✗→✗
+      Q: How many lamps are behind me?
+      GT: ['one']  Reg: 'two,'  Aug: 'two,'
+    [scene0019_00] novel=6 | ✗→✗
+      Q: How many chairs are in the room?
+      GT: ['ten']  Reg: 'zero,'  Aug: 'zero,'
+    [scene0019_00] novel=5 | ✗→✗
+      Q: How many chairs are against the wall to my left?
+      GT: ['eight']  Reg: 'one,'  Aug: 'one,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: Is the amount of tables in the room odd or even?
+      GT: ['odd']  Reg: 'even,'  Aug: 'even,'
+    [scene0316_00] novel=1 | ✗→✗
+      Q: What is in front of me on the right?
+      GT: ['chair']  Reg: 'wall,'  Aug: 'wall,'
+    [scene0019_00] novel=2 | ✗→✗
+      Q: What is on the right side of the vending machine in front of me?
+      GT: ['lamp']  Reg: 'wall,'  Aug: 'wall,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: If I sat on the left side of the table to my left, what object would b
+      GT: ['ottoman']  Reg: 'couch,'  Aug: 'couch,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: How many tables are on my left?
+      GT: ['two']  Reg: 'one,'  Aug: 'one,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: How many tables are behind me?
+      GT: ['two']  Reg: 'one,'  Aug: 'one,'
+    [scene0342_00] novel=1 | ✗→✗
+      Q: What type of furniture does this room have?
+      GT: ['chairs']  Reg: 'chair,'  Aug: 'chair,'
+    [scene0527_00] novel=1 | ✗→✗
+      Q: What direction should I move to place a soap on the end table?
+      GT: ['forward']  Reg: 'to place a soap on the end table, you should move in the dir'  Aug: 'to place a soap on the end table, you should move in the dir'
+    [scene0019_00] novel=1 | ✗→✗
+      Q: What is on the right of the door that is behind me?
+      GT: ['trash can']  Reg: 'wall,'  Aug: 'wall,'
+    [scene0077_00] novel=2 | ✗→✗
+      Q: If I wanted to leave the room , what direction do I need to go?
+      GT: ['backward']  Reg: 'to leave the room, you would need to go in the direction of '  Aug: 'to leave the room, you would need to go in the direction of '
+    [scene0342_00] novel=1 | ✗→✗
+      Q: From my location, how many chairs inside the room can I count without 
+      GT: ['zero']  Reg: 'four'  Aug: 'four'
+    [scene0019_00] novel=2 | ✗→✗
+      Q: Which direction should I go if I want to turn on the light?
+      GT: ['left']  Reg: 'go to the light'  Aug: 'go to the light'
+    [scene0342_00] novel=3 | ✗→✗
+      Q: Is the total amount of chairs in the room odd or even?
+      GT: ['even']  Reg: 'odd,'  Aug: 'odd,'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: Is the copier the same colour as the trash can?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0019_00] novel=3 | ✗→✗
+      Q: How many doors are on my left?
+      GT: ['two']  Reg: 'one,'  Aug: 'one,'
+    [scene0019_00] novel=6 | ✗→✗
+      Q: What can I insert in the vending machine in front of me to buy a can o
+      GT: ['coins']  Reg: 'money'  Aug: 'money'
+    [scene0342_00] novel=2 | ✗→✗
+      Q: Is the amount of table I am facing odd or even?
+      GT: ['odd']  Reg: 'even,'  Aug: 'even,'
+    [scene0527_00] novel=7 | ✗→✗
+      Q: Can I see the TV while in the room?
+      GT: ['no']  Reg: 'yes, you can see the tv while in the room.'  Aug: 'yes, you can see the tv while in the room.'
+    [scene0019_00] novel=2 | ✗→✗
+      Q: Can I see lamp at where I am standing?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: What is the color of the couch?
+      GT: ['black']  Reg: 'brown,'  Aug: 'brown,'
+    [scene0697_00] novel=1 | ✗→✗
+      Q: Turning left, could I see my reflection?
+      GT: ['yes']  Reg: 'no'  Aug: 'no'
+    [scene0077_00] novel=2 | ✗→✗
+      Q: What object is directly left of me?
+      GT: ['door']  Reg: 'wall,'  Aug: 'wall,'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: Is there a clock on the wall to my right?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0316_00] novel=1 | ✗→✗
+      Q: Is the water fountain I am in front of the highest?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0527_00] novel=2 | ✗→✗
+      Q: What is hung on the wall just behind this table?
+      GT: ['clothes hanger']  Reg: 'towel'  Aug: 'towel,'
+    [scene0077_00] novel=3 | ✗→✗
+      Q: Am in the bedroom?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0629_00] novel=1 | ✗→✗
+      Q: Can I see the TV without moving much?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0342_00] novel=1 | ✗→✗
+      Q: What is the object on top of the table in front of me?
+      GT: ['unknown']  Reg: 'whiteboard,'  Aug: 'whiteboard,'
+    [scene0019_00] novel=3 | ✗→✗
+      Q: What color is the vending machine behind me?
+      GT: ['black']  Reg: 'white,'  Aug: 'white,'
+    [scene0077_00] novel=3 | ✗→✗
+      Q: Which object to my right needs to be taken care of when it is raining?
+      GT: ['window']  Reg: 'printer,'  Aug: 'printer,'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: Are the lights on behind me?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0077_00] novel=3 | ✗→✗
+      Q: Which printer in front of me is bigger, left or right?
+      GT: ['right']  Reg: 'left,'  Aug: 'left,'
+    [scene0019_00] novel=3 | ✗→✗
+      Q: Is there a door to my right?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0342_00] novel=3 | ✗→✗
+      Q: How many chairs are in the row behind me?
+      GT: ['seven']  Reg: 'four,'  Aug: 'four,'
+    [scene0019_00] novel=3 | ✗→✗
+      Q: Is the lamp in front of me on or off?
+      GT: ['off']  Reg: 'on'  Aug: 'on'
+    [scene0316_00] novel=3 | ✗→✗
+      Q: How many chairs are in front of me?
+      GT: ['one']  Reg: 'zero,'  Aug: 'zero,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: What color are the ottomans?
+      GT: ['unknown']  Reg: 'brown,'  Aug: 'brown,'
+    [scene0527_00] novel=1 | ✗→✗
+      Q: How sinks to my right?
+      GT: ['one']  Reg: 'there is no sink to your right.'  Aug: 'there is a sink to your right.'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: What is the closest item to my left on the front wall?
+      GT: ['door']  Reg: 'trash can,'  Aug: 'trash can,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: Is the amount of tables I am facing odd or even?
+      GT: ['odd']  Reg: 'even'  Aug: 'even'
+    [scene0019_00] novel=3 | ✗→✗
+      Q: What is behind me around a corner?
+      GT: ['vending machine']  Reg: 'wall,'  Aug: 'wall,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: How many couches are in the room?
+      GT: ['three']  Reg: 'two,'  Aug: 'two,'
+    [scene0527_00] novel=4 | ✗→✗
+      Q: What is behind me that is square shaped?
+      GT: ['sink']  Reg: 'wall,'  Aug: 'wall,'
+    [scene0342_00] novel=1 | ✗→✗
+      Q: What color is the backpack to my right?
+      GT: ['black and red']  Reg: 'black,'  Aug: 'black,'
+    [scene0077_00] novel=3 | ✗→✗
+      Q: How many printers are in front of me on the counter?
+      GT: ['two']  Reg: 'one,'  Aug: 'one,'
+    [scene0342_00] novel=5 | ✗→✗
+      Q: What shape is the table in?
+      GT: ['rectangle']  Reg: 'round,'  Aug: 'round,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: Is there anything on tables to my left?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: What is the closest item to me on top of the counter?
+      GT: ['printer']  Reg: 'box,'  Aug: 'box,'
+    [scene0342_00] novel=1 | ✗→✗
+      Q: What is to my right?
+      GT: ['whiteboard']  Reg: 'wall,'  Aug: 'wall,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: What color are the couches?
+      GT: ['black']  Reg: 'brown,'  Aug: 'brown,'
+    [scene0342_00] novel=2 | ✗→✗
+      Q: How many rows of chairs are behind me?
+      GT: ['four']  Reg: 'two,'  Aug: 'two,'
+    [scene0559_00] novel=3 | ✗→✗
+      Q: How many chairs are there around the table that I am facing?
+      GT: ['zero']  Reg: 'four,'  Aug: 'four,'
+    [scene0342_00] novel=1 | ✗→✗
+      Q: Can the number of chairs behind me be divided by three?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: How many copiers are on my right?
+      GT: ['two']  Reg: 'one,'  Aug: 'one,'
+    [scene0342_00] novel=4 | ✗→✗
+      Q: Are the chairs bright colors or dark colors?
+      GT: ['unknown']  Reg: 'dark,'  Aug: 'dark,'
+    [scene0019_00] novel=7 | ✗→✗
+      Q: What can I use the vending machine in front of me if I wanted to buy c
+      GT: ['money']  Reg: 'chips'  Aug: 'chips'
+    [scene0342_00] novel=1 | ✗→✗
+      Q: What prevents me from laying down on the chair?
+      GT: ['unknown']  Reg: 'the armrests,'  Aug: 'the armrests,'
+    [scene0342_00] novel=2 | ✗→✗
+      Q: Can I see the whiteboard from where I am?
+      GT: ['unknown']  Reg: 'yes,'  Aug: 'yes, you can see the whiteboard from where you are sitting.'
+    [scene0342_00] novel=2 | ✗→✗
+      Q: Is the shape of table in front of me round or rectangular?
+      GT: ['rectangular']  Reg: 'round,'  Aug: 'round,'
+    [scene0316_00] novel=2 | ✗→✗
+      Q: Is there a wall clock on the wall that I am facing?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: Where should I go if I want to let some fresh air in the room?
+      GT: ['backward']  Reg: 'open the door on your right'  Aug: 'open the door'
+    [scene0342_00] novel=1 | ✗→✗
+      Q: What is on the walk in the direction I am looking?
+      GT: ['whiteboard']  Reg: 'table,'  Aug: 'table,'
+    [scene0077_00] novel=3 | ✗→✗
+      Q: Where is the light coming from in front of me?
+      GT: ['window']  Reg: 'the light is coming from the ceiling.'  Aug: 'the light is coming from the ceiling.'
+    [scene0342_00] novel=2 | ✗→✗
+      Q: What is on the table in front of me?
+      GT: ['backpack']  Reg: 'keyboard,'  Aug: 'keyboard,'
+    [scene0077_00] novel=2 | ✗→✗
+      Q: What is on top of the counter that is in front of me?
+      GT: ['printer']  Reg: 'sink,'  Aug: 'sink,'
+    [scene0019_00] novel=1 | ✗→✗
+      Q: If I wanted to sit down on the couch, where should I go?
+      GT: ['backward']  Reg: 'to the right'  Aug: 'to the right'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: What is the color of the couch?
+      GT: ['black']  Reg: 'brown,'  Aug: 'brown,'
+    [scene0077_00] novel=2 | ✗→✗
+      Q: What is the highest object in front of me?
+      GT: ['shelf']  Reg: 'cabinet,'  Aug: 'cabinet,'
+    [scene0063_00] novel=1 | ✗→✗
+      Q: What shape is the table in front of me?
+      GT: ['rectangle']  Reg: 'round,'  Aug: 'round,'
+    [scene0077_00] novel=3 | ✗→✗
+      Q: Are the lights on in the room?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0077_00] novel=2 | ✗→✗
+      Q: What is between the door on my left and the copier?
+      GT: ['trash can']  Reg: 'wall,'  Aug: 'wall,'
+    [scene0342_00] novel=2 | ✗→✗
+      Q: What is behind the table in front of me?
+      GT: ['whiteboard']  Reg: 'wall,'  Aug: 'wall,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: What color is the ottoman to my left?
+      GT: ['red']  Reg: 'brown,'  Aug: 'brown,'
+    [scene0697_00] novel=1 | ✗→✗
+      Q: What is the green object beside the dresser to my left?
+      GT: ['trash can']  Reg: 'plant,'  Aug: 'plant,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: What is the number of tables?
+      GT: ['three']  Reg: 'two,'  Aug: 'two,'
+    [scene0342_00] novel=1 | ✗→✗
+      Q: How many chairs are in my row?
+      GT: ['four']  Reg: 'three,'  Aug: 'three,'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: What is the furthest item to the right away from me that reaches up to
+      GT: ['shelf']  Reg: 'trash can,'  Aug: 'trash can,'
+    [scene0019_00] novel=2 | ✗→✗
+      Q: What type of lamp is in front of me by door?
+      GT: ['unknown']  Reg: 'floor lamp,'  Aug: 'floor lamp,'
+    [scene0342_00] novel=4 | ✗→✗
+      Q: Are the chairs in front of me all together or by themselves?
+      GT: ['unknown']  Reg: 'together,'  Aug: 'together,'
+    [scene0342_00] novel=1 | ✗→✗
+      Q: Is the backpack likely to be mine?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0316_00] novel=2 | ✗→✗
+      Q: What is the color of the wall in front of me?
+      GT: ['red']  Reg: 'white,'  Aug: 'white,'
+    [scene0342_00] novel=1 | ✗→✗
+      Q: What are the objects behind me that you can sit on?
+      GT: ['chairs']  Reg: 'chair, chair'  Aug: 'chair, chair'
+    [scene0342_00] novel=2 | ✗→✗
+      Q: What is on top of the table in front of me?
+      GT: ['backpack']  Reg: 'keyboard,'  Aug: 'keyboard,'
+    [scene0357_00] novel=2 | ✗→✗
+      Q: What is covering the window in front of me?
+      GT: ['curtains']  Reg: 'curtain,'  Aug: 'curtain,'
+    [scene0697_00] novel=1 | ✗→✗
+      Q: I feel bored and I need to turn on the TV to watch the news. Which dir
+      GT: ['left']  Reg: 'go to the tv'  Aug: 'go to the tv'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: How many tables are on my left side?
+      GT: ['two']  Reg: 'one,'  Aug: 'one,'
+    [scene0019_00] novel=2 | ✗→✗
+      Q: How many chairs are to the right?
+      GT: ['eight']  Reg: 'two,'  Aug: 'two,'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: Is there a picture on the wall in front of me?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: What object in the room is red?
+      GT: ['ottoman']  Reg: 'chair,'  Aug: 'chair,'
+    [scene0697_00] novel=1 | ✗→✗
+      Q: Is the TV on in front of me or off?
+      GT: ['off']  Reg: 'on,'  Aug: 'on,'
+    [scene0077_00] novel=3 | ✗→✗
+      Q: How many printers are to my right?
+      GT: ['two']  Reg: 'one,'  Aug: 'one,'
+    [scene0527_00] novel=1 | ✗→✗
+      Q: What is the shape of the table on my right?
+      GT: ['rectangular']  Reg: 'rectangle,'  Aug: 'rectangle'
+    [scene0357_00] novel=1 | ✗→✗
+      Q: What is covering the window to my right?
+      GT: ['curtains']  Reg: 'curtain,'  Aug: 'curtain,'
+    [scene0568_00] novel=1 | ✗→✗
+      Q: What is the TV in front of me on top off?
+      GT: ['TV stand']  Reg: 'table,'  Aug: 'table,'
+    [scene0077_00] novel=3 | ✗→✗
+      Q: How many printers are to my left?
+      GT: ['two']  Reg: 'one,'  Aug: 'one,'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: What is the door in my 10 o'clock direction made of?
+      GT: ['wood']  Reg: 'glass,'  Aug: 'glass,'
+    [scene0063_00] novel=1 | ✗→✗
+      Q: How many chairs are behind me?
+      GT: ['four']  Reg: 'zero,'  Aug: 'zero,'
+    [scene0077_00] novel=3 | ✗→✗
+      Q: Can I walk backward?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0697_00] novel=1 | ✗→✗
+      Q: What is covering the windows to my right?
+      GT: ['blinds']  Reg: 'curtains,'  Aug: 'curtains,'
+    [scene0328_00] novel=1 | ✗→✗
+      Q: What is hanging from the window in front of me?
+      GT: ['sign']  Reg: 'curtain,'  Aug: 'curtain,'
+    [scene0342_00] novel=3 | ✗→✗
+      Q: What color are the chairs in the third row?
+      GT: ['brown']  Reg: 'blue,'  Aug: 'blue,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: How many couches are there besides the onei am sitting on?
+      GT: ['two']  Reg: 'zero,'  Aug: 'zero,'
+    [scene0342_00] novel=3 | ✗→✗
+      Q: How many chairs are on your left?
+      GT: ['twenty']  Reg: 'two,'  Aug: 'two,'
+    [scene0019_00] novel=3 | ✗→✗
+      Q: How many chairs are on my left side in total?
+      GT: ['ten']  Reg: 'three,'  Aug: 'three,'
+    [scene0342_00] novel=1 | ✗→✗
+      Q: Can I use the table to take notes from where I am sitting?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0063_00] novel=1 | ✗→✗
+      Q: If I turned my head backward, which object could I see on the table be
+      GT: ['microwave']  Reg: 'backpack'  Aug: 'backpack'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: Is there an even amount of tables in the room?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0316_00] novel=1 | ✗→✗
+      Q: What color is the chair on my right?
+      GT: ['brown']  Reg: 'blue,'  Aug: 'blue,'
+    [scene0077_00] novel=3 | ✗→✗
+      Q: Which printer is closer, one in front of me or one behind me to my rig
+      GT: ['behind']  Reg: 'the printer that is closer to you is the one in front of you'  Aug: 'the printer that is closer to you is the one in front of you'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: Is the shape of ottoman I am facing round or square?
+      GT: ['square']  Reg: 'round,'  Aug: 'round,'
+    [scene0019_00] novel=2 | ✗→✗
+      Q: What integer can the amount of chair behind me be divided by?
+      GT: ['five']  Reg: '3'  Aug: '3'
+    [scene0568_00] novel=1 | ✗→✗
+      Q: Is the TV in front of me on or off?
+      GT: ['off']  Reg: 'on,'  Aug: 'on,'
+    [scene0077_00] novel=1 | ✗→✗
+      Q: Which is closer between the counter and the trashcan to my right?
+      GT: ['trashcan']  Reg: 'the trash can to your right is closer to the counter than th'  Aug: 'the trash can to your right is closer to the counter than th'
+    [scene0342_00] novel=3 | ✗→✗
+      Q: If I work to the whiteboard , what will be in my way?
+      GT: ['table']  Reg: 'chair,'  Aug: 'chair,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: Are there objects on the tables?
+      GT: ['no']  Reg: 'yes,'  Aug: 'yes,'
+    [scene0019_00] novel=2 | ✗→✗
+      Q: Which direction should I go if I want to exit the room?
+      GT: ['left']  Reg: 'you should go through the door on your immediate right to ex'  Aug: 'you should go through the door on your immediate right to ex'
+    [scene0357_00] novel=3 | ✗→✗
+      Q: What type of light is poking through the curtains in front of me?
+      GT: ['sunlight']  Reg: 'natural light,'  Aug: 'natural light,'
+    [scene0328_00] novel=2 | ✗→✗
+      Q: How many signs are in the room?
+      GT: ['four']  Reg: 'two'  Aug: 'two'
+    [scene0019_00] novel=6 | ✗→✗
+      Q: What shape is the machine in front of me?
+      GT: ['cube']  Reg: 'rectangular,'  Aug: 'rectangular,'
+    [scene0342_00] novel=1 | ✗→✗
+      Q: How many chairs are on my left side?
+      GT: ['twenty']  Reg: 'four,'  Aug: 'four,'
+    [scene0527_00] novel=2 | ✗→✗
+      Q: What is to my right that you use to dry yourself with when wet?
+      GT: ['towels']  Reg: 'towel,'  Aug: 'towel,'
+    [scene0081_00] novel=1 | ✗→✗
+      Q: Is the ottoman soft or hard to my left?
+      GT: ['soft']  Reg: 'hard,'  Aug: 'hard,'
+    [scene0527_00] novel=4 | ✗→✗
+      Q: How many towels to my right?
+      GT: ['three']  Reg: 'two,'  Aug: 'two,'
+    [scene0019_00] novel=4 | ✗→✓ FIXED
+      Q: Are the six chairs stacked to my 7 o'clock the same colors as the couc
+      GT: ['no']  Reg: 'the image you've provided appears to be a bit abstract and c'  Aug: 'the image you've provided appears to be a bit abstract and d'
+════════════════════════════════════════════════════════════
+
+  CONTROL: Questions where NO novel views were in final 9
+────────────────────────────────────────────────────────────
+  Questions without novel views : 3029
+  Regular accuracy  : 1161/3029 (38.33%)
+  Augmented accuracy: 1171/3029 (38.66%)
+  Delta             : +0.33%  (should be ~0 with deterministic decoding)
+════════════════════════════════════════════════════════════
+
+
+  ── Examples FIXED by augmentation ──
+    [scene0207_00] Q: How many heating elements are on the stove to my right?
+       GT: ['four']  |  Reg: 'two,'  →  Aug: 'four,'
+       Novel views in final 9: 0
+    [scene0629_00] Q: Can I be able to water the plant from my current position without movi
+       GT: ['no']  |  Reg: 'based on the image provided, it appears that you are standing in front of a cabinet and there is a plant to your right. if you are facing the cabinet across the room, you would need to move to the left side of the cabinet to reach the plant directly. however, if the plant is positioned in such a way that it can be watered from the direction you are currently facing without moving, it might be possible.'  →  Aug: 'based on the image provided, it appears that you are standing in front of a cabinet and there is a plant to your right. if you are facing the cabinet across the room, you would need to move to the side or behind the cabinet to access the plant for watering purposes. without moving, you would not be able to reach the plant from your current position.'
+       Novel views in final 9: 0
+    [scene0549_00] Q: What is on the right side of the door that allows more light into the 
+       GT: ['window']  |  Reg: 'curtain,'  →  Aug: 'window,'
+       Novel views in final 9: 0
+    [scene0559_00] Q: What is the shape of this table?
+       GT: ['rectangular']  |  Reg: 'rectangle'  →  Aug: 'rectangular,'
+       Novel views in final 9: 0
+    [scene0552_00] Q: Is the amount of table I am facing odd or even?
+       GT: ['odd']  |  Reg: 'even'  →  Aug: 'the image you've provided shows a table, but it's not possible to determine whether the table is odd or even in terms of its dimensions (length and width) without more specific information. the image only shows a portion of the table, so we can't ascertain if the overall dimensions are odd or even. if you need to know the dimensions of the entire table, you would need additional information or a view of the entire table from different angles.'
+       Novel views in final 9: 0
+
+  ── Examples BROKEN by augmentation ──
+    [scene0164_00] Q: Am I standing closer to the refrigerator to my left or the stove behin
+       GT: ['refrigerator']  |  Reg: 'you are standing closer to the refrigerator on your left.'  →  Aug: 'left'
+       Novel views in final 9: 0
+    [scene0144_00] Q: I there any more space in front that I can move forward?
+       GT: ['no']  |  Reg: 'based on the image, it appears that there is enough space in front of the dresser for you to move forward with a chair within reach. the chair seems to be positioned at a distance from the dresser, allowing for some movement between them. however, if you need more space or have any specific requirements, you might want to consider moving the chair closer to the dresser or clearing additional space as needed.'  →  Aug: 'yes'
+       Novel views in final 9: 0
+    [scene0655_00] Q: What color are the chairs in front of me?
+       GT: ['red']  |  Reg: 'red,'  →  Aug: 'blue,'
+       Novel views in final 9: 0
+    [scene0696_00] Q: Which way do I turn to find the mattress?
+       GT: ['right']  |  Reg: 'to find the pillow on the table, you would turn to your right.'  →  Aug: 'to find the way to turn and take a nap, you would need to look for the chair and the table. since you're already sitting on the chair by the table, you would likely turn around to face the other side of the table where the pillow is placed.'
+       Novel views in final 9: 0
+    [scene0131_00] Q: How many chairs are on my right?
+       GT: ['one']  |  Reg: 'one,'  →  Aug: 'two,'
+       Novel views in final 9: 0

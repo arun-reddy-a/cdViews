@@ -50,7 +50,10 @@ class LlavaQwenForCausalLM(Qwen2ForCausalLM, LlavaMetaForCausalLM):
         # super(Qwen2ForCausalLM, self).__init__(config)
         Qwen2ForCausalLM.__init__(self, config)
         config.model_type = "llava_qwen"
-        config.rope_scaling = None
+        # NOTE: Do NOT set config.rope_scaling = None here.
+        # In transformers >=5.x, rope_scaling is a property alias for
+        # rope_parameters; setting it to None wipes the properly initialised
+        # rope_parameters dict and causes Qwen2RotaryEmbedding to crash.
 
         self.model = LlavaQwenModel(config)
         self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=False)

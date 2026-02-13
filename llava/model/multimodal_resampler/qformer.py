@@ -36,12 +36,56 @@ from transformers.modeling_outputs import (
     SequenceClassifierOutput,
     TokenClassifierOutput,
 )
-from transformers.modeling_utils import (
-    PreTrainedModel,
-    apply_chunking_to_forward,
-    find_pruneable_heads_and_indices,
-    prune_linear_layer,
-)
+from transformers.modeling_utils import PreTrainedModel
+
+# ── Compat shims for functions removed in transformers ≥ 5.x ──
+try:
+    from transformers.modeling_utils import apply_chunking_to_forward
+except ImportError:
+    def apply_chunking_to_forward(forward_fn, chunk_size, chunk_dim, *input_tensors):
+        if chunk_size > 0:
+            n = input_tensors[0].shape[chunk_dim]
+            if n % chunk_size != 0:
+                raise ValueError(f"dim {chunk_dim} size ({n}) not divisible by chunk_size ({chunk_size})")
+            num_chunks = n // chunk_size
+            return torch.cat(
+                [forward_fn(*[t.chunk(num_chunks, dim=chunk_dim)[i] for t in input_tensors])
+                 for i in range(num_chunks)],
+                dim=chunk_dim,
+            )
+        return forward_fn(*input_tensors)
+
+try:
+    from transformers.modeling_utils import find_pruneable_heads_and_indices
+except ImportError:
+    try:
+        from transformers.pytorch_utils import find_pruneable_heads_and_indices
+    except ImportError:
+        def find_pruneable_heads_and_indices(heads, n_heads, head_size, already_pruned_heads):
+            import torch as _torch
+            mask = _torch.ones(n_heads, head_size)
+            heads = set(heads) - already_pruned_heads
+            for head in heads:
+                mask[head] = 0
+            mask = mask.view(-1).contiguous().eq(1)
+            index = _torch.arange(len(mask))[mask].long()
+            return heads, index
+
+try:
+    from transformers.modeling_utils import prune_linear_layer
+except ImportError:
+    try:
+        from transformers.pytorch_utils import prune_linear_layer
+    except ImportError:
+        def prune_linear_layer(layer, index, dim=0):
+            import torch.nn as nn
+            W = layer.weight.index_select(dim, index).clone().detach()
+            b = layer.bias.index_select(0, index).clone().detach() if layer.bias is not None else None
+            new = nn.Linear(W.size(1), W.size(0), bias=b is not None).to(W.device)
+            new.weight = nn.Parameter(W)
+            if b is not None:
+                new.bias = nn.Parameter(b)
+            return new
 from transformers.utils import logging
 from transformers.models.bert.configuration_bert import BertConfig
 

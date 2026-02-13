@@ -1,0 +1,2675 @@
+{
+  "summary": {
+    "regular": {
+      "label": "Regular CDViews",
+      "total": 163,
+      "correct": 62,
+      "wrong": 101,
+      "accuracy": 38.04,
+      "total_hallucination": 29,
+      "error_distribution": {
+        "wrong_spatial": 52,
+        "unrelated_hallucination": 16,
+        "hallucinated_object": 12,
+        "wrong_color": 11,
+        "wrong_yes_no": 5,
+        "wrong_count": 3,
+        "hallucinated_color": 1,
+        "wrong_object": 1
+      }
+    },
+    "augmented": {
+      "label": "Augmented CDViews (+ novel views)",
+      "total": 163,
+      "correct": 56,
+      "wrong": 107,
+      "accuracy": 34.36,
+      "total_hallucination": 35,
+      "error_distribution": {
+        "wrong_spatial": 54,
+        "unrelated_hallucination": 22,
+        "hallucinated_object": 12,
+        "wrong_color": 10,
+        "wrong_yes_no": 4,
+        "wrong_count": 3,
+        "hallucinated_color": 1,
+        "wrong_object": 1
+      }
+    },
+    "delta": {
+      "accuracy": -3.68,
+      "wrong": 6,
+      "hallucination": 6
+    }
+  },
+  "novel_view_selection": {
+    "total_questions": 163,
+    "questions_with_novel_selected": 10,
+    "pct_questions_with_novel": 6.1,
+    "total_novel_selected": 23,
+    "total_novel_available": 1630,
+    "avg_novel_per_question": 0.14,
+    "max_novel_per_question": 5,
+    "novel_count_distribution": {
+      "0": 153,
+      "1": 4,
+      "2": 3,
+      "3": 1,
+      "5": 2
+    }
+  },
+  "transitions": {
+    "both_correct": 47,
+    "both_wrong": 92,
+    "fixed_by_augment": 9,
+    "broken_by_augment": 15
+  },
+  "fixed_questions": [
+    {
+      "question_id": "220602004435",
+      "scene_id": "scene0187_00",
+      "question": "What color is the chair I am sitting on?",
+      "situation": "I am facing towards the coffee table, sitting on the chair beside it and there is another coffee table and chair to my right.",
+      "gt": [
+        "brown"
+      ],
+      "regular_ans": "blue,",
+      "augmented_ans": "brown,",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602030285",
+      "scene_id": "scene0696_00",
+      "question": "Is the mattress on or off of a bed?",
+      "situation": "I am sitting on a chair by the table with a pillow directly in front of me across the table.",
+      "gt": [
+        "off"
+      ],
+      "regular_ans": "on",
+      "augmented_ans": "off",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602023173",
+      "scene_id": "scene0011_00",
+      "question": "How many chairs are on my side of the table?",
+      "situation": "I am sitting on the chair with no chairs in the same row on my right and facing the window.",
+      "gt": [
+        "four"
+      ],
+      "regular_ans": "three,",
+      "augmented_ans": "four,",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602031971",
+      "scene_id": "scene0207_00",
+      "question": "How many heating elements are on the stove to my right?",
+      "situation": "I am opening the door to get out of the room with the refrigerator within reach.",
+      "gt": [
+        "four"
+      ],
+      "regular_ans": "two,",
+      "augmented_ans": "four,",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602004364",
+      "scene_id": "scene0316_00",
+      "question": "How many ottomans are there behind me?",
+      "situation": "I am drinking from the water fountain with another water fountain on my right.",
+      "gt": [
+        "two"
+      ],
+      "regular_ans": "one,",
+      "augmented_ans": "two,",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602032231",
+      "scene_id": "scene0196_00",
+      "question": "Is the trashcan near the door?",
+      "situation": "I am walking in between two tables and there are some folded chairs behind me.",
+      "gt": [
+        "yes"
+      ],
+      "regular_ans": "no,",
+      "augmented_ans": "yes,",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602006280",
+      "scene_id": "scene0580_00",
+      "question": "Is the shape of bed behind me round, square or rectangular?",
+      "situation": "I am opening my dresser to find clothes to wear for work, clothes I find I am placing them on top of the bed behind me.",
+      "gt": [
+        "rectangular"
+      ],
+      "regular_ans": "round",
+      "augmented_ans": "rectangular",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602026776",
+      "scene_id": "scene0030_00",
+      "question": "Where would I find a book in front of me?",
+      "situation": "I am organizing the bookshelf under the boxes.",
+      "gt": [
+        "bookshelf"
+      ],
+      "regular_ans": "shelf,",
+      "augmented_ans": "bookshelf,",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602033233",
+      "scene_id": "scene0559_00",
+      "question": "What is nearer to me, the ottoman or the whiteboard?",
+      "situation": "I am facing a box on top of a table, while having a whiteboard on my left.",
+      "gt": [
+        "whiteboard"
+      ],
+      "regular_ans": "the ottoman is nearer to you.",
+      "augmented_ans": "whiteboard",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    }
+  ],
+  "broken_questions": [
+    {
+      "question_id": "220602031113",
+      "scene_id": "scene0462_00",
+      "question": "Which direction should I go if I want to use copier?",
+      "situation": "I am reaching in the mini fridge to grab a can of cola to drink while the boxes are in my six o'clock direction.",
+      "gt": [
+        "right"
+      ],
+      "regular_ans": "to use the copier, you should go in the direction of the copier. based on the image, the copier is located to the right of the mini fridge and slightly ahead of it. so, you would head towards the right side of the image where the copier is positioned.",
+      "augmented_ans": "if you want to use the copier, you should go in the direction of the copier. based on the information provided, the copier is located at the 10 o'clock position from where you are currently standing.",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602025211",
+      "scene_id": "scene0343_00",
+      "question": "In which direction should I turn to put the item back on the green cart?",
+      "situation": "I am sitting on the chair with another chair on my right.",
+      "gt": [
+        "right"
+      ],
+      "regular_ans": "right,",
+      "augmented_ans": "to put the item back on the green cart, you should turn to your left.",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602004115",
+      "scene_id": "scene0488_00",
+      "question": "Which direction should I go if I want to use the refrigerator?",
+      "situation": "I am leaning on the stove facing the sink.",
+      "gt": [
+        "right"
+      ],
+      "regular_ans": "go right",
+      "augmented_ans": "go straight",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602005608",
+      "scene_id": "scene0164_00",
+      "question": "Am I standing closer to the refrigerator to my left or the stove behind me?",
+      "situation": "I am standing in front of the counter, taking the paper towel roll on top to prepare a dish and just to my left is the refrigerator.",
+      "gt": [
+        "refrigerator"
+      ],
+      "regular_ans": "you are standing closer to the refrigerator, which is to your left.",
+      "augmented_ans": "left",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602024538",
+      "scene_id": "scene0030_00",
+      "question": "How many short bookshelves are on my left side?",
+      "situation": "I am writing on a blackboard and there is a table on my left side.",
+      "gt": [
+        "two"
+      ],
+      "regular_ans": "two,",
+      "augmented_ans": "one,",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602027955",
+      "scene_id": "scene0144_00",
+      "question": "I there any more space in front that I can move forward?",
+      "situation": "I am opening the dresser with a chair within reach.",
+      "gt": [
+        "no"
+      ],
+      "regular_ans": "based on the image provided, it appears that there is enough space in front of the dresser for you to move forward with a chair within reach. the chair seems to be positioned at a distance from the dresser, allowing for some movement between them. however, it's always a good idea to ensure there's enough room to maneuver safely without knocking anything over or getting caught in any cords or cables.",
+      "augmented_ans": "yes",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602032426",
+      "scene_id": "scene0207_00",
+      "question": "How many desks are behind me on the right?",
+      "situation": "I am cooking on the stove.",
+      "gt": [
+        "one"
+      ],
+      "regular_ans": "one",
+      "augmented_ans": "zero,",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602003619",
+      "scene_id": "scene0559_00",
+      "question": "To what direction should I move to sit on any of the couches?",
+      "situation": "I am facing a box on top of a table, while having a whiteboard on my left.",
+      "gt": [
+        "right"
+      ],
+      "regular_ans": "to the right",
+      "augmented_ans": "move to the left.",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602011551",
+      "scene_id": "scene0196_00",
+      "question": "I see the trash can in front of me?",
+      "situation": "I am standing on middle of table closest to the door and facing the door.",
+      "gt": [
+        "yes"
+      ],
+      "regular_ans": "yes,",
+      "augmented_ans": "the trash can is located to your right, slightly ahead of you.",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602030862",
+      "scene_id": "scene0568_00",
+      "question": "How many tables are to my right?",
+      "situation": "I am opening the curtains in front of me before I go sit down on the red couch behind me to the right.",
+      "gt": [
+        "one"
+      ],
+      "regular_ans": "one,",
+      "augmented_ans": "two,",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602013373",
+      "scene_id": "scene0144_00",
+      "question": "Is the number of chairs to my left odd or even?",
+      "situation": "I am opening the dresser with a chair within reach.",
+      "gt": [
+        "even"
+      ],
+      "regular_ans": "even,",
+      "augmented_ans": "odd,",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602019463",
+      "scene_id": "scene0131_00",
+      "question": "Can I still walk forward?",
+      "situation": "I am writing on the whiteboard and there is an office chair on my right and a mini fridge on my left.",
+      "gt": [
+        "no"
+      ],
+      "regular_ans": "based on the image, it appears that you are standing in a room with a whiteboard in front of you. there is an office chair to your right and a mini fridge to your left. if you want to walk forward, you would need to move past the office chair and the mini fridge. however, since there is no clear indication of the size of these objects or the space between them, i cannot provide a precise answer. if the office chair and mini fridge are close together and take up most of the available space, you might not be able to walk forward without moving one of them out of the way. if they are spaced apart enough, you should be able to walk forward without any issue.",
+      "augmented_ans": "based on the image provided, it appears that you are standing in a space with an office chair to your right and a mini fridge to your left. if you need to walk forward, you would likely have to navigate around these objects. the office chair is closer to you than the mini fridge, so you might need to walk past the office chair first before you can get to the mini fridge if it's further ahead. it's important to be aware of your surroundings and move cautiously to avoid bumping into any objects.",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602020875",
+      "scene_id": "scene0663_00",
+      "question": "How many doors are in the room?",
+      "situation": "I am sitting on an office chair while having a keyboard on my left and a window behind me.",
+      "gt": [
+        "one"
+      ],
+      "regular_ans": "one,",
+      "augmented_ans": "two,",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602018010",
+      "scene_id": "scene0559_00",
+      "question": "What is the shape of this table?",
+      "situation": "I am facing a box on top of a table, while having a whiteboard on my left.",
+      "gt": [
+        "rectangular"
+      ],
+      "regular_ans": "rectangular,",
+      "augmented_ans": "rectangle,",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    },
+    {
+      "question_id": "220602000538",
+      "scene_id": "scene0559_00",
+      "question": "Is there a clock on the wall to my left?",
+      "situation": "I am facing a box on top of a table, while having a whiteboard on my left.",
+      "gt": [
+        "no"
+      ],
+      "regular_ans": "no,",
+      "augmented_ans": "yes,",
+      "novel_selected": 0,
+      "novel_selected_names": []
+    }
+  ],
+  "wrong_regular": [
+    {
+      "question_id": "220602004963",
+      "scene_id": "scene0095_00",
+      "question": "What is the color of the chairs on my 8 o'clock direction?",
+      "situation": "I am sitting on a chair facing the table while there is a cabinet right behind me.",
+      "predicted": "black,",
+      "ground_truth": [
+        "red"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602001042",
+      "scene_id": "scene0474_00",
+      "question": "Is the shape of table behind me round, square or rectangular?",
+      "situation": "I am opening the door.",
+      "predicted": "round,",
+      "ground_truth": [
+        "rectangular"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602031294",
+      "scene_id": "scene0187_00",
+      "question": "What is on 4 o'clock coffee table in front of me?",
+      "situation": "I am sitting on on a seat that comes with a small round pad on it.",
+      "predicted": "there is a book on the coffee table at 4 o'clock.",
+      "ground_truth": [
+        "seat"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602011853",
+      "scene_id": "scene0550_00",
+      "question": "Which direction should I go if I want to use the mirror?",
+      "situation": "Just entered the room.",
+      "predicted": "turn left and go to the wall with the mirror.",
+      "ground_truth": [
+        "right"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602004435",
+      "scene_id": "scene0187_00",
+      "question": "What color is the chair I am sitting on?",
+      "situation": "I am facing towards the coffee table, sitting on the chair beside it and there is another coffee table and chair to my right.",
+      "predicted": "blue,",
+      "ground_truth": [
+        "brown"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602023178",
+      "scene_id": "scene0693_00",
+      "question": "What type of door does the bathtub have to my left?",
+      "situation": "I am facing the bath tub . The towel is to the left of me and the bottle is to the right of me.",
+      "predicted": "glass,",
+      "ground_truth": [
+        "sliding door"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602003811",
+      "scene_id": "scene0441_00",
+      "question": "Is the bathroom stall door open or closed?",
+      "situation": "I am standing in front of trash bin and the sink is on my left within reach.",
+      "predicted": "closed",
+      "ground_truth": [
+        "open"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602017990",
+      "scene_id": "scene0549_00",
+      "question": "Can you see a fan on the ceiling above me?",
+      "situation": "I am sitting on an armchair and a rectangle table is behind me.",
+      "predicted": "yes,",
+      "ground_truth": [
+        "no"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602001284",
+      "scene_id": "scene0553_00",
+      "question": "How do I get out of here?",
+      "situation": "Leaning on a rod against the wall while my right hand in the sink.",
+      "predicted": "to get out of the bathroom, you would typically open the door and exit the room. if the door is closed, you would need to locate the handle or knob and turn it to open the door. once the door is open, you can step through the doorway and close the door behind you. if you are unable to reach the door handle due to your position in the sink, you may need assistance from someone else to help you open the door.",
+      "ground_truth": [
+        "right"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602009470",
+      "scene_id": "scene0277_00",
+      "question": "What is under the bed that is on my left side?",
+      "situation": "I am throwing litter into the recycling bin and looking at the radiator.",
+      "predicted": "floor,",
+      "ground_truth": [
+        "dresser"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602010001",
+      "scene_id": "scene0663_00",
+      "question": "How many chairs are in the room?",
+      "situation": "I am changing the trash bag and there is a desk behind me.",
+      "predicted": "four,",
+      "ground_truth": [
+        "one"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602025695",
+      "scene_id": "scene0474_00",
+      "question": "How many backpacks are to my right?",
+      "situation": "I am standing in front of the bookshelf looking for my \"computers for dummies book\".",
+      "predicted": "one,",
+      "ground_truth": [
+        "two"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602001089",
+      "scene_id": "scene0329_00",
+      "question": "What is on the left of the whiteboard in front of me?",
+      "situation": "I am facing a whiteboard while there are some doors to my left.",
+      "predicted": "wall,",
+      "ground_truth": [
+        "door"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602008577",
+      "scene_id": "scene0356_00",
+      "question": "What size is the bed to my right?",
+      "situation": "I am standing on the floor, looking out of the window waving to people outside.",
+      "predicted": "not given,",
+      "ground_truth": [
+        "twin"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602030285",
+      "scene_id": "scene0696_00",
+      "question": "Is the mattress on or off of a bed?",
+      "situation": "I am sitting on a chair by the table with a pillow directly in front of me across the table.",
+      "predicted": "on",
+      "ground_truth": [
+        "off"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602027521",
+      "scene_id": "scene0217_00",
+      "question": "What is on top of the desk?",
+      "situation": "I am facing a dresser that is under a bed, while having a door on my right and another dresser with a bed above it behind me.",
+      "predicted": "monitor,",
+      "ground_truth": [
+        "backpack"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602029649",
+      "scene_id": "scene0643_00",
+      "question": "What color is the bag on the chair behind me?",
+      "situation": "I am sitting on a brown chair and can see a white shelf in front of me across the room.",
+      "predicted": "blue,",
+      "ground_truth": [
+        "brown"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602023173",
+      "scene_id": "scene0011_00",
+      "question": "How many chairs are on my side of the table?",
+      "situation": "I am sitting on the chair with no chairs in the same row on my right and facing the window.",
+      "predicted": "three,",
+      "ground_truth": [
+        "four"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602017923",
+      "scene_id": "scene0430_00",
+      "question": "What is located directly to my right?",
+      "situation": "I am picking up my backpack and facing the wall the chair under it against.",
+      "predicted": "wall,",
+      "ground_truth": [
+        "chair"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602025177",
+      "scene_id": "scene0328_00",
+      "question": "What do I see if I turn around?",
+      "situation": "I am washing my hands.",
+      "predicted": "wall,",
+      "ground_truth": [
+        "refridgerator"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602011959",
+      "scene_id": "scene0329_00",
+      "question": "Is the amount of coffee table on my behind odd or even?",
+      "situation": "I am facing a table, while having a lamp behind me.",
+      "predicted": "even",
+      "ground_truth": [
+        "odd"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602000348",
+      "scene_id": "scene0550_00",
+      "question": "What is behind the trash can that is on my right side?",
+      "situation": "Standing by and closing the door of the toilet stall in front of me.",
+      "predicted": "wall",
+      "ground_truth": [
+        "radiator"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602031971",
+      "scene_id": "scene0207_00",
+      "question": "How many heating elements are on the stove to my right?",
+      "situation": "I am opening the door to get out of the room with the refrigerator within reach.",
+      "predicted": "two,",
+      "ground_truth": [
+        "four"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602029537",
+      "scene_id": "scene0699_00",
+      "question": "Is the bed behind me made?",
+      "situation": "I am standing in front of the cabinet and the bed behind me and the nightstand on the left.",
+      "predicted": "yes,",
+      "ground_truth": [
+        "no"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602014516",
+      "scene_id": "scene0648_00",
+      "question": "How many pillows are on the bed I am sitting on?",
+      "situation": "Sitting on the bed listening to some music. There is a lamp on the other side of the bed.",
+      "predicted": "two,",
+      "ground_truth": [
+        "one"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602006883",
+      "scene_id": "scene0164_00",
+      "question": "Is the amount of dishwasher on my left odd or even?",
+      "situation": "I am facing the stove and the kitchen cabinet is behind me.",
+      "predicted": "even,",
+      "ground_truth": [
+        "odd"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602014373",
+      "scene_id": "scene0568_00",
+      "question": "What color is the coach on my 8 o'clock?",
+      "situation": "I am facing a shelf, while having a curtain on the right.",
+      "predicted": "red",
+      "ground_truth": [
+        "maroon"
+      ],
+      "error_type": "hallucinated_color"
+    },
+    {
+      "question_id": "220602004075",
+      "scene_id": "scene0663_00",
+      "question": "Where is the whiteboard located?",
+      "situation": "I am picking up my suitcase from the floor and there is a cabinet on my left.",
+      "predicted": "on the wall opposite the cabinet,",
+      "ground_truth": [
+        "unknown"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602016259",
+      "scene_id": "scene0207_00",
+      "question": "How many cabinets are on the above?",
+      "situation": "I am doing dishes at the sink on the kitchen cabinet.",
+      "predicted": "two",
+      "ground_truth": [
+        "one"
+      ],
+      "error_type": "wrong_count"
+    },
+    {
+      "question_id": "220602004198",
+      "scene_id": "scene0608_00",
+      "question": "Need to water a plant, which direction should I go?",
+      "situation": "I am practicing for the homecoming show next week with my keyboard.",
+      "predicted": "to the right",
+      "ground_truth": [
+        "forward"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602014650",
+      "scene_id": "scene0671_00",
+      "question": "Is the shape of table in front of me round or rectangular?",
+      "situation": "I am standing directly behind a chair with a bench to my 11 o'clock.",
+      "predicted": "round,",
+      "ground_truth": [
+        "rectangular"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602025747",
+      "scene_id": "scene0149_00",
+      "question": "What is closer to me between the chair to my right and the sink to my left?",
+      "situation": "I am facing the trash can and there is a table on my right.",
+      "predicted": "sink,",
+      "ground_truth": [
+        "chair"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602011463",
+      "scene_id": "scene0011_00",
+      "question": "What color is the kitchen counter?",
+      "situation": "I am sitting on the chair while there is a window right behind me and only one chair that is not in the same row with the chair I am sitting on on my left.",
+      "predicted": "white,",
+      "ground_truth": [
+        "brown"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602001691",
+      "scene_id": "scene0699_00",
+      "question": "What color is the blanket on the bed behind me to the left?",
+      "situation": "I am facing a closet with a bag behind me and a box to my right.",
+      "predicted": "white,",
+      "ground_truth": [
+        "grey"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602030902",
+      "scene_id": "scene0019_00",
+      "question": "If I wanted to leave the room. What direction should I go?",
+      "situation": "I am sitting on a couch while having a vending machine in my twelve o'clock direction and several chairs on my right.",
+      "predicted": "to leave the room, you should head towards the door. based on your description, it seems that the door is not in the direction of the vending machine or the chairs, but rather somewhere else in the room. if you are facing the vending machine and chairs, the door would likely be to your left or right, depending on which side of the room the door is located.",
+      "ground_truth": [
+        "forward"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602019467",
+      "scene_id": "scene0277_00",
+      "question": "Is the bed in front elevated or low to the floor?",
+      "situation": "I am standing in front of cabinet and facing the desk.",
+      "predicted": "low to the floor,",
+      "ground_truth": [
+        "elevated"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602016190",
+      "scene_id": "scene0329_00",
+      "question": "Am I closer to the coffee table or file cabinet?",
+      "situation": "I am facing a trash can, while having a door on my left and a table directly behind me.",
+      "predicted": "coffee table,",
+      "ground_truth": [
+        "file cabinet"
+      ],
+      "error_type": "wrong_object"
+    },
+    {
+      "question_id": "220602003588",
+      "scene_id": "scene0559_00",
+      "question": "Is the table behind me messy or tidy?",
+      "situation": "I am facing a whiteboard, while having a box behind me.",
+      "predicted": "tidy,",
+      "ground_truth": [
+        "messy"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602012538",
+      "scene_id": "scene0663_00",
+      "question": "Can I touch the airplane from where I am?",
+      "situation": "I am standing next to the black chair and looking directly at the window.",
+      "predicted": "no,",
+      "ground_truth": [
+        "yes"
+      ],
+      "error_type": "wrong_yes_no"
+    },
+    {
+      "question_id": "220602026796",
+      "scene_id": "scene0518_00",
+      "question": "Does the closest office chair to me have a backpack?",
+      "situation": "Leaning on the wall while standing in between a couch and a drawer.",
+      "predicted": "no",
+      "ground_truth": [
+        "yes"
+      ],
+      "error_type": "wrong_yes_no"
+    },
+    {
+      "question_id": "220602026408",
+      "scene_id": "scene0629_00",
+      "question": "Can I be able to water the plant from my current position without moving?",
+      "situation": "I am facing a mattress across the room and there is a cabinet on my right.",
+      "predicted": "based on the image provided, it appears that you are standing in front of a cabinet and there is a plant to your right. if you are facing the cabinet, you would need to move either yourself or the cabinet to reach the plant and water it from your current position without moving.",
+      "ground_truth": [
+        "no"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602015468",
+      "scene_id": "scene0441_00",
+      "question": "How do I go to enter the bathroom stall?",
+      "situation": "I am facing a trash can and there is a door on my right.",
+      "predicted": "go to the door",
+      "ground_truth": [
+        "left"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602003091",
+      "scene_id": "scene0095_00",
+      "question": "How many monitors are in front?",
+      "situation": "I am sitting on a chair facing the table with a window on my right and a chair on my left.",
+      "predicted": "three,",
+      "ground_truth": [
+        "five"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602001816",
+      "scene_id": "scene0249_00",
+      "question": "What is beside the board that is far away on my right?",
+      "situation": "I am standing by an end of the long table with my back facing the window.",
+      "predicted": "wall,",
+      "ground_truth": [
+        "chair"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602009823",
+      "scene_id": "scene0595_00",
+      "question": "What color is the table in front of me?",
+      "situation": "I am facing the table and I just finished folding my clothes . That is why it all folded in front of me. Those machines are to my left.",
+      "predicted": "white,",
+      "ground_truth": [
+        "gray"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602012395",
+      "scene_id": "scene0441_00",
+      "question": "What is above the sink?",
+      "situation": "I am urinating.",
+      "predicted": "mirror",
+      "ground_truth": [
+        "light"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602010019",
+      "scene_id": "scene0697_00",
+      "question": "Which object behind me is commonly described as a toy for girls?",
+      "situation": "I am facing the dresser to pick out clothes to wear while also watching the news on the TV in front of me.",
+      "predicted": "doll",
+      "ground_truth": [
+        "unknown"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602004364",
+      "scene_id": "scene0316_00",
+      "question": "How many ottomans are there behind me?",
+      "situation": "I am drinking from the water fountain with another water fountain on my right.",
+      "predicted": "one,",
+      "ground_truth": [
+        "two"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602019271",
+      "scene_id": "scene0500_00",
+      "question": "What color is the chair to my left?",
+      "situation": "I am closing a window closest to the blackboard and there is a chair on my right within reach.",
+      "predicted": "blue,",
+      "ground_truth": [
+        "brown"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602026989",
+      "scene_id": "scene0019_00",
+      "question": "What can I insert into the vending machine behind me to buy something?",
+      "situation": "I am pulling a door while having a vending machine and a lamp on my left.",
+      "predicted": "coins,",
+      "ground_truth": [
+        "money"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602015582",
+      "scene_id": "scene0598_00",
+      "question": "If I wanted to get a book, where would I go?",
+      "situation": "I am searching for a horror book on the bookshelf while my back is turned to the table.",
+      "predicted": "bookshelf",
+      "ground_truth": [
+        "forward"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602007215",
+      "scene_id": "scene0251_00",
+      "question": "What is the color of the floor?",
+      "situation": "I am sitting on a chair while there is a table to my right on the other side of the room.",
+      "predicted": "not mentioned,",
+      "ground_truth": [
+        "brown"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602015819",
+      "scene_id": "scene0559_00",
+      "question": "Am I in a lounge?",
+      "situation": "Leaning on end of a table and checking the flyers on the whiteboard in front of me.",
+      "predicted": "it looks like you might be in a lounge or a casual workspace. the presence of a whiteboard with notes and flyers, along with a table and what appears to be a relaxed posture, supports this interpretation. however, without more context, it's difficult to determine the exact nature of the location.",
+      "ground_truth": [
+        "yes"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602015092",
+      "scene_id": "scene0342_00",
+      "question": "What is the color of the chairs in front of me?",
+      "situation": "I am sitting on the chair of the third row with two chairs on my right and one on my left.",
+      "predicted": "blue,",
+      "ground_truth": [
+        "brown"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602009127",
+      "scene_id": "scene0671_00",
+      "question": "What color is the table behind me?",
+      "situation": "I am standing in front of some carts with a bench behind me.",
+      "predicted": "brown,",
+      "ground_truth": [
+        "black"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602029673",
+      "scene_id": "scene0196_00",
+      "question": "Is the brown door to my left open or closed?",
+      "situation": "I am facing a backpack on top of a table, while standing in the middle of the room between two groups of tables.",
+      "predicted": "closed,",
+      "ground_truth": [
+        "open"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602028871",
+      "scene_id": "scene0357_00",
+      "question": "What is at the foot of the stairs behind me?",
+      "situation": "I am in front of the pipe, and there is a shelf on my left.",
+      "predicted": "wall,",
+      "ground_truth": [
+        "backpack"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602027460",
+      "scene_id": "scene0488_00",
+      "question": "Where should I go to put something in the oven?",
+      "situation": "I am washing my hands.",
+      "predicted": "kitchen",
+      "ground_truth": [
+        "backward"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602003209",
+      "scene_id": "scene0187_00",
+      "question": "What is on 12 o'clock coffee table in front of me?",
+      "situation": "I am sitting on on a seat that comes with a small round pad on it.",
+      "predicted": "coffee cup,",
+      "ground_truth": [
+        "table"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602026055",
+      "scene_id": "scene0164_00",
+      "question": "How many kitchen cabinets did I leave open?",
+      "situation": "I am standing in front of the fridge holding a dessert, right next to me is the paper towel roll.",
+      "predicted": "three,",
+      "ground_truth": [
+        "two"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602026963",
+      "scene_id": "scene0357_00",
+      "question": "What color is the door to my left?",
+      "situation": "I am going up the stairs to use the bathroom in the master bedroom.",
+      "predicted": "white,",
+      "ground_truth": [
+        "brown"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602022780",
+      "scene_id": "scene0207_00",
+      "question": "How many couches are on the right?",
+      "situation": "I am cooking on the stove.",
+      "predicted": "zero",
+      "ground_truth": [
+        "one"
+      ],
+      "error_type": "wrong_count"
+    },
+    {
+      "question_id": "220602010489",
+      "scene_id": "scene0568_00",
+      "question": "Where is the couch where I can sit?",
+      "situation": "I am standing on this mosaic rug and trying to figure out if the picture in front of me is straight and not crooked.",
+      "predicted": "the couch is located near the wall opposite the picture.",
+      "ground_truth": [
+        "back left"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602007223",
+      "scene_id": "scene0063_00",
+      "question": "Is the table round or rectangle?",
+      "situation": "I am sitting on the chair eating at the table.",
+      "predicted": "round,",
+      "ground_truth": [
+        "rectangle"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602019614",
+      "scene_id": "scene0077_00",
+      "question": "Am I in the washroom?",
+      "situation": "I am facing a trash can and there is a door on my right.",
+      "predicted": "yes,",
+      "ground_truth": [
+        "no"
+      ],
+      "error_type": "wrong_yes_no"
+    },
+    {
+      "question_id": "220602011688",
+      "scene_id": "scene0598_00",
+      "question": "What is to my right side that I can use to view the outside?",
+      "situation": "I am sitting on a chair facing the blinds while using the laptop to conduct research on my school project. There is no more seat to my right.",
+      "predicted": "blinds,",
+      "ground_truth": [
+        "windows"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602027196",
+      "scene_id": "scene0671_00",
+      "question": "Can the amount of tray behind me divided by three?",
+      "situation": "I am opening the cabinet to fine paper to place on the table behind me.",
+      "predicted": "yes",
+      "ground_truth": [
+        "no"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602029077",
+      "scene_id": "scene0343_00",
+      "question": "Am I in the washroom?",
+      "situation": "I am standing in front of a multicolored table and facing the white table in direction.",
+      "predicted": "no",
+      "ground_truth": [
+        "identical"
+      ],
+      "error_type": "wrong_yes_no"
+    },
+    {
+      "question_id": "220602023686",
+      "scene_id": "scene0081_00",
+      "question": "What pattern can be seen on the couch in front of me?",
+      "situation": "I am putting my hands on the round table with no ottomans while there is an ottoman in my two o'clock direction.",
+      "predicted": "striped,",
+      "ground_truth": [
+        "stripes"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602009502",
+      "scene_id": "scene0695_00",
+      "question": "What is to my left that I can use to write on?",
+      "situation": "I am facing a window, while having a laundry hamper on my right and a box with a bag on top of it on my left.",
+      "predicted": "whiteboard,",
+      "ground_truth": [
+        "desk"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602013767",
+      "scene_id": "scene0277_00",
+      "question": "What is on top of the desk on my right?",
+      "situation": "I am throwing litter into the recycling bin and looking at the radiator.",
+      "predicted": "monitor,",
+      "ground_truth": [
+        "shelf"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602032231",
+      "scene_id": "scene0196_00",
+      "question": "Is the trashcan near the door?",
+      "situation": "I am walking in between two tables and there are some folded chairs behind me.",
+      "predicted": "no,",
+      "ground_truth": [
+        "yes"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602009859",
+      "scene_id": "scene0648_00",
+      "question": "What color is the blanket behind me?",
+      "situation": "Sitting in front of a desk and working, while having a closet on my left.",
+      "predicted": "red",
+      "ground_truth": [
+        "purple"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602001296",
+      "scene_id": "scene0663_00",
+      "question": "What is mounted on the wall to my left?",
+      "situation": "I am sitting on a chair and there are several backpacks with a sutcase on the floor in front of me.",
+      "predicted": "picture,",
+      "ground_truth": [
+        "shelves"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602017105",
+      "scene_id": "scene0356_00",
+      "question": "What is on the 6 o'clock of the bed that is on my 1 o'clock?",
+      "situation": "I am standing between a door and a dresser, facing a window.",
+      "predicted": "pillow,",
+      "ground_truth": [
+        "radiator"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602002875",
+      "scene_id": "scene0553_00",
+      "question": "How can I get some toilet paper from where I am?",
+      "situation": "Just entered the room.",
+      "predicted": "to get toilet paper from where you are, you can follow these steps:",
+      "ground_truth": [
+        "walk forward"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602009207",
+      "scene_id": "scene0329_00",
+      "question": "What is on the 12 o'clock couch in front of me?",
+      "situation": "I am facing a couch, while having a lamp behind me.",
+      "predicted": "pillow,",
+      "ground_truth": [
+        "whiteboard"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602009265",
+      "scene_id": "scene0500_00",
+      "question": "Is the table to my left round or rectangular?",
+      "situation": "I am sitting on a chair closest to the blackboard with a chair to my right within reach.",
+      "predicted": "round,",
+      "ground_truth": [
+        "rectangular"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602021128",
+      "scene_id": "scene0595_00",
+      "question": "What is on top of the laundry machine to my left?",
+      "situation": "I am grabbing the dried clothing inside the clothes dryer while the door to the dryer is on my right.",
+      "predicted": "clothes dryer,",
+      "ground_truth": [
+        "laundry basket"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602016894",
+      "scene_id": "scene0693_00",
+      "question": "Is the number of mirrors on my right and behind me even or odd?",
+      "situation": "I am facing the bath tub, the vanity is to the left and the door is to the right.",
+      "predicted": "even,",
+      "ground_truth": [
+        "odd"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602006280",
+      "scene_id": "scene0580_00",
+      "question": "Is the shape of bed behind me round, square or rectangular?",
+      "situation": "I am opening my dresser to find clothes to wear for work, clothes I find I am placing them on top of the bed behind me.",
+      "predicted": "round",
+      "ground_truth": [
+        "rectangular"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602011465",
+      "scene_id": "scene0342_00",
+      "question": "Are the chairs in front of me wood or leather?",
+      "situation": "I am standing on top of table and facing the rows of chairs.",
+      "predicted": "wood,",
+      "ground_truth": [
+        "leather"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602010590",
+      "scene_id": "scene0558_00",
+      "question": "What is blue and on the chair behind me?",
+      "situation": "I am looking at bookshelf and the bag is behind me and the window is on my right.",
+      "predicted": "pillow,",
+      "ground_truth": [
+        "backpack"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602031433",
+      "scene_id": "scene0665_00",
+      "question": "How many chairs are at the table directly behind me?",
+      "situation": "I am facing a table with some chairs under it, while having another table with some chairs behind me. I can see some desks over the round table in front of me.",
+      "predicted": "four,",
+      "ground_truth": [
+        "three"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602022961",
+      "scene_id": "scene0187_00",
+      "question": "Is the amount of table on my left side, odd or even?",
+      "situation": "I am standing on top of a coffee table facing another one, while there is a chair on my left.",
+      "predicted": "even,",
+      "ground_truth": [
+        "odd"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602011382",
+      "scene_id": "scene0670_00",
+      "question": "How many trash can are on my left side?",
+      "situation": "Dumping some expired food taken from the fridge to my immediate right.",
+      "predicted": "one",
+      "ground_truth": [
+        "two"
+      ],
+      "error_type": "wrong_count"
+    },
+    {
+      "question_id": "220602031507",
+      "scene_id": "scene0595_00",
+      "question": "Is the door to the dryer closest to me, opened or closed?",
+      "situation": "I am reading the instructions on how to use the dryer before I place all my wet clothing on the clothes dryer on my left.",
+      "predicted": "closed,",
+      "ground_truth": [
+        "opened"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602024844",
+      "scene_id": "scene0550_00",
+      "question": "Which direction should I go if I want to exit the room?",
+      "situation": "Sitting on the toilet sitting doing my business and also escaping from the infuriating meeting.",
+      "predicted": "to exit the room, you should head towards the door. based on the image provided, the door is located to your right if you are facing the toilet.",
+      "ground_truth": [
+        "left"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602015476",
+      "scene_id": "scene0695_00",
+      "question": "Is the bed to my right messy or tidy?",
+      "situation": "I turn on the lamp in front of me before I open the blinds that are on my left side.",
+      "predicted": "tidy,",
+      "ground_truth": [
+        "messy"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602004004",
+      "scene_id": "scene0251_00",
+      "question": "Is the number of trash cans on my right even or odd?",
+      "situation": "I am facing an opened door and there are some trash cans on my right.",
+      "predicted": "even,",
+      "ground_truth": [
+        "odd"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602004859",
+      "scene_id": "scene0629_00",
+      "question": "What shape is the end table on my back left?",
+      "situation": "I am facing the door and there are some cabinets on my right.",
+      "predicted": "round,",
+      "ground_truth": [
+        "square"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602026776",
+      "scene_id": "scene0030_00",
+      "question": "Where would I find a book in front of me?",
+      "situation": "I am organizing the bookshelf under the boxes.",
+      "predicted": "shelf,",
+      "ground_truth": [
+        "bookshelf"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602007094",
+      "scene_id": "scene0549_00",
+      "question": "If I stand up can I be able to walk forward?",
+      "situation": "I am sitting on an armchair and a rectangle table is behind me.",
+      "predicted": "yes",
+      "ground_truth": [
+        "unknown"
+      ],
+      "error_type": "wrong_yes_no"
+    },
+    {
+      "question_id": "220602033233",
+      "scene_id": "scene0559_00",
+      "question": "What is nearer to me, the ottoman or the whiteboard?",
+      "situation": "I am facing a box on top of a table, while having a whiteboard on my left.",
+      "predicted": "the ottoman is nearer to you.",
+      "ground_truth": [
+        "whiteboard"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602025507",
+      "scene_id": "scene0599_00",
+      "question": "What is above the trash can that is on my 7 o'clock?",
+      "situation": "I am sitting on a chair by the end of the table, having my lunch break while watching TV in front of me.",
+      "predicted": "wall,",
+      "ground_truth": [
+        "paper towel dispenser"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602002694",
+      "scene_id": "scene0609_00",
+      "question": "All the tables inside the room are made of the same material; true or false?",
+      "situation": "Sitting by a table against the wall. There is no more chair on my left.",
+      "predicted": "false.",
+      "ground_truth": [
+        "true"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602016452",
+      "scene_id": "scene0251_00",
+      "question": "What is above the table that is on my 10 o'clock?",
+      "situation": "I am entering the room and I can see a trash can to my right.",
+      "predicted": "picture,",
+      "ground_truth": [
+        "window"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602016324",
+      "scene_id": "scene0064_00",
+      "question": "Are the black couches hard or soft?",
+      "situation": "I am exiting the room.",
+      "predicted": "hard",
+      "ground_truth": [
+        "soft"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602025465",
+      "scene_id": "scene0629_00",
+      "question": "What is on the right of the cabinet that is on my 5 o'clock?",
+      "situation": "I am standing in front of an end table and there is a matress in my two o'clock direction.",
+      "predicted": "wall,",
+      "ground_truth": [
+        "cabinet"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602010777",
+      "scene_id": "scene0064_00",
+      "question": "If I wanted to read a book, what direction should I go, forward or left?",
+      "situation": "I am sitting on an armchair with a bookshelf on my right and an armchair behind me.",
+      "predicted": "left",
+      "ground_truth": [
+        "forward"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602023544",
+      "scene_id": "scene0217_00",
+      "question": "How many beds are available to sleep on?",
+      "situation": "I am facing a radiator that is behind a recycling bin and a trash can, while having a wardrobe closet behind me.",
+      "predicted": "zero,",
+      "ground_truth": [
+        "two"
+      ],
+      "error_type": "unrelated_hallucination"
+    }
+  ],
+  "wrong_augmented": [
+    {
+      "question_id": "220602004963",
+      "scene_id": "scene0095_00",
+      "question": "What is the color of the chairs on my 8 o'clock direction?",
+      "situation": "I am sitting on a chair facing the table while there is a cabinet right behind me.",
+      "predicted": "brown,",
+      "ground_truth": [
+        "red"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602001042",
+      "scene_id": "scene0474_00",
+      "question": "Is the shape of table behind me round, square or rectangular?",
+      "situation": "I am opening the door.",
+      "predicted": "round,",
+      "ground_truth": [
+        "rectangular"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602031294",
+      "scene_id": "scene0187_00",
+      "question": "What is on 4 o'clock coffee table in front of me?",
+      "situation": "I am sitting on on a seat that comes with a small round pad on it.",
+      "predicted": "there is a coffee table with a round pad on it at 4 o'clock.",
+      "ground_truth": [
+        "seat"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602011853",
+      "scene_id": "scene0550_00",
+      "question": "Which direction should I go if I want to use the mirror?",
+      "situation": "Just entered the room.",
+      "predicted": "go to the mirror",
+      "ground_truth": [
+        "right"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602031113",
+      "scene_id": "scene0462_00",
+      "question": "Which direction should I go if I want to use copier?",
+      "situation": "I am reaching in the mini fridge to grab a can of cola to drink while the boxes are in my six o'clock direction.",
+      "predicted": "if you want to use the copier, you should go in the direction of the copier. based on the information provided, the copier is located at the 10 o'clock position from where you are currently standing.",
+      "ground_truth": [
+        "right"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602023178",
+      "scene_id": "scene0693_00",
+      "question": "What type of door does the bathtub have to my left?",
+      "situation": "I am facing the bath tub . The towel is to the left of me and the bottle is to the right of me.",
+      "predicted": "glass,",
+      "ground_truth": [
+        "sliding door"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602003811",
+      "scene_id": "scene0441_00",
+      "question": "Is the bathroom stall door open or closed?",
+      "situation": "I am standing in front of trash bin and the sink is on my left within reach.",
+      "predicted": "the bathroom stall o",
+      "ground_truth": [
+        "open"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602025211",
+      "scene_id": "scene0343_00",
+      "question": "In which direction should I turn to put the item back on the green cart?",
+      "situation": "I am sitting on the chair with another chair on my right.",
+      "predicted": "to put the item back on the green cart, you should turn to your left.",
+      "ground_truth": [
+        "right"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602017990",
+      "scene_id": "scene0549_00",
+      "question": "Can you see a fan on the ceiling above me?",
+      "situation": "I am sitting on an armchair and a rectangle table is behind me.",
+      "predicted": "yes,",
+      "ground_truth": [
+        "no"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602001284",
+      "scene_id": "scene0553_00",
+      "question": "How do I get out of here?",
+      "situation": "Leaning on a rod against the wall while my right hand in the sink.",
+      "predicted": "it seems like you're in a situation where you need to get out of a room or area, but you're not sure how. here are some steps you can take:",
+      "ground_truth": [
+        "right"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602004115",
+      "scene_id": "scene0488_00",
+      "question": "Which direction should I go if I want to use the refrigerator?",
+      "situation": "I am leaning on the stove facing the sink.",
+      "predicted": "go straight",
+      "ground_truth": [
+        "right"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602009470",
+      "scene_id": "scene0277_00",
+      "question": "What is under the bed that is on my left side?",
+      "situation": "I am throwing litter into the recycling bin and looking at the radiator.",
+      "predicted": "floor,",
+      "ground_truth": [
+        "dresser"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602010001",
+      "scene_id": "scene0663_00",
+      "question": "How many chairs are in the room?",
+      "situation": "I am changing the trash bag and there is a desk behind me.",
+      "predicted": "four,",
+      "ground_truth": [
+        "one"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602025695",
+      "scene_id": "scene0474_00",
+      "question": "How many backpacks are to my right?",
+      "situation": "I am standing in front of the bookshelf looking for my \"computers for dummies book\".",
+      "predicted": "one,",
+      "ground_truth": [
+        "two"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602001089",
+      "scene_id": "scene0329_00",
+      "question": "What is on the left of the whiteboard in front of me?",
+      "situation": "I am facing a whiteboard while there are some doors to my left.",
+      "predicted": "wall,",
+      "ground_truth": [
+        "door"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602008577",
+      "scene_id": "scene0356_00",
+      "question": "What size is the bed to my right?",
+      "situation": "I am standing on the floor, looking out of the window waving to people outside.",
+      "predicted": "not given,",
+      "ground_truth": [
+        "twin"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602027521",
+      "scene_id": "scene0217_00",
+      "question": "What is on top of the desk?",
+      "situation": "I am facing a dresser that is under a bed, while having a door on my right and another dresser with a bed above it behind me.",
+      "predicted": "monitor,",
+      "ground_truth": [
+        "backpack"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602029649",
+      "scene_id": "scene0643_00",
+      "question": "What color is the bag on the chair behind me?",
+      "situation": "I am sitting on a brown chair and can see a white shelf in front of me across the room.",
+      "predicted": "blue,",
+      "ground_truth": [
+        "brown"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602017923",
+      "scene_id": "scene0430_00",
+      "question": "What is located directly to my right?",
+      "situation": "I am picking up my backpack and facing the wall the chair under it against.",
+      "predicted": "wall,",
+      "ground_truth": [
+        "chair"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602025177",
+      "scene_id": "scene0328_00",
+      "question": "What do I see if I turn around?",
+      "situation": "I am washing my hands.",
+      "predicted": "wall,",
+      "ground_truth": [
+        "refridgerator"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602011959",
+      "scene_id": "scene0329_00",
+      "question": "Is the amount of coffee table on my behind odd or even?",
+      "situation": "I am facing a table, while having a lamp behind me.",
+      "predicted": "even",
+      "ground_truth": [
+        "odd"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602000348",
+      "scene_id": "scene0550_00",
+      "question": "What is behind the trash can that is on my right side?",
+      "situation": "Standing by and closing the door of the toilet stall in front of me.",
+      "predicted": "wall,",
+      "ground_truth": [
+        "radiator"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602029537",
+      "scene_id": "scene0699_00",
+      "question": "Is the bed behind me made?",
+      "situation": "I am standing in front of the cabinet and the bed behind me and the nightstand on the left.",
+      "predicted": "yes,",
+      "ground_truth": [
+        "no"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602014516",
+      "scene_id": "scene0648_00",
+      "question": "How many pillows are on the bed I am sitting on?",
+      "situation": "Sitting on the bed listening to some music. There is a lamp on the other side of the bed.",
+      "predicted": "two,",
+      "ground_truth": [
+        "one"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602006883",
+      "scene_id": "scene0164_00",
+      "question": "Is the amount of dishwasher on my left odd or even?",
+      "situation": "I am facing the stove and the kitchen cabinet is behind me.",
+      "predicted": "even,",
+      "ground_truth": [
+        "odd"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602014373",
+      "scene_id": "scene0568_00",
+      "question": "What color is the coach on my 8 o'clock?",
+      "situation": "I am facing a shelf, while having a curtain on the right.",
+      "predicted": "red",
+      "ground_truth": [
+        "maroon"
+      ],
+      "error_type": "hallucinated_color"
+    },
+    {
+      "question_id": "220602004075",
+      "scene_id": "scene0663_00",
+      "question": "Where is the whiteboard located?",
+      "situation": "I am picking up my suitcase from the floor and there is a cabinet on my left.",
+      "predicted": "on the wall opposite the door,",
+      "ground_truth": [
+        "unknown"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602016259",
+      "scene_id": "scene0207_00",
+      "question": "How many cabinets are on the above?",
+      "situation": "I am doing dishes at the sink on the kitchen cabinet.",
+      "predicted": "two",
+      "ground_truth": [
+        "one"
+      ],
+      "error_type": "wrong_count"
+    },
+    {
+      "question_id": "220602004198",
+      "scene_id": "scene0608_00",
+      "question": "Need to water a plant, which direction should I go?",
+      "situation": "I am practicing for the homecoming show next week with my keyboard.",
+      "predicted": "to the right",
+      "ground_truth": [
+        "forward"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602014650",
+      "scene_id": "scene0671_00",
+      "question": "Is the shape of table in front of me round or rectangular?",
+      "situation": "I am standing directly behind a chair with a bench to my 11 o'clock.",
+      "predicted": "round,",
+      "ground_truth": [
+        "rectangular"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602025747",
+      "scene_id": "scene0149_00",
+      "question": "What is closer to me between the chair to my right and the sink to my left?",
+      "situation": "I am facing the trash can and there is a table on my right.",
+      "predicted": "sink,",
+      "ground_truth": [
+        "chair"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602011463",
+      "scene_id": "scene0011_00",
+      "question": "What color is the kitchen counter?",
+      "situation": "I am sitting on the chair while there is a window right behind me and only one chair that is not in the same row with the chair I am sitting on on my left.",
+      "predicted": "white,",
+      "ground_truth": [
+        "brown"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602001691",
+      "scene_id": "scene0699_00",
+      "question": "What color is the blanket on the bed behind me to the left?",
+      "situation": "I am facing a closet with a bag behind me and a box to my right.",
+      "predicted": "white,",
+      "ground_truth": [
+        "grey"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602030902",
+      "scene_id": "scene0019_00",
+      "question": "If I wanted to leave the room. What direction should I go?",
+      "situation": "I am sitting on a couch while having a vending machine in my twelve o'clock direction and several chairs on my right.",
+      "predicted": "to leave the room, you should head towards the door. based on the information provided, the door is likely in the direction opposite to where you are currently sitting, as it is not specified which direction the door is in relation to your position. if you can see a door or know its general location, you should walk towards it. if you cannot see a door, you may need to look for an exit sign or ask someone for directions.",
+      "ground_truth": [
+        "forward"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602019467",
+      "scene_id": "scene0277_00",
+      "question": "Is the bed in front elevated or low to the floor?",
+      "situation": "I am standing in front of cabinet and facing the desk.",
+      "predicted": "low to the floor,",
+      "ground_truth": [
+        "elevated"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602005608",
+      "scene_id": "scene0164_00",
+      "question": "Am I standing closer to the refrigerator to my left or the stove behind me?",
+      "situation": "I am standing in front of the counter, taking the paper towel roll on top to prepare a dish and just to my left is the refrigerator.",
+      "predicted": "left",
+      "ground_truth": [
+        "refrigerator"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602016190",
+      "scene_id": "scene0329_00",
+      "question": "Am I closer to the coffee table or file cabinet?",
+      "situation": "I am facing a trash can, while having a door on my left and a table directly behind me.",
+      "predicted": "coffee table,",
+      "ground_truth": [
+        "file cabinet"
+      ],
+      "error_type": "wrong_object"
+    },
+    {
+      "question_id": "220602003588",
+      "scene_id": "scene0559_00",
+      "question": "Is the table behind me messy or tidy?",
+      "situation": "I am facing a whiteboard, while having a box behind me.",
+      "predicted": "tidy,",
+      "ground_truth": [
+        "messy"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602012538",
+      "scene_id": "scene0663_00",
+      "question": "Can I touch the airplane from where I am?",
+      "situation": "I am standing next to the black chair and looking directly at the window.",
+      "predicted": "no,",
+      "ground_truth": [
+        "yes"
+      ],
+      "error_type": "wrong_yes_no"
+    },
+    {
+      "question_id": "220602026796",
+      "scene_id": "scene0518_00",
+      "question": "Does the closest office chair to me have a backpack?",
+      "situation": "Leaning on the wall while standing in between a couch and a drawer.",
+      "predicted": "no",
+      "ground_truth": [
+        "yes"
+      ],
+      "error_type": "wrong_yes_no"
+    },
+    {
+      "question_id": "220602026408",
+      "scene_id": "scene0629_00",
+      "question": "Can I be able to water the plant from my current position without moving?",
+      "situation": "I am facing a mattress across the room and there is a cabinet on my right.",
+      "predicted": "based on the image provided, it appears that you are standing in front of a cabinet and there is a plant to your left. if you are facing the cabinet directly across from you, you would need to move to either side of the cabinet to reach the plant, as there doesn't seem to be any visible means to water the plant from where you are currently standing without moving.",
+      "ground_truth": [
+        "no"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602015468",
+      "scene_id": "scene0441_00",
+      "question": "How do I go to enter the bathroom stall?",
+      "situation": "I am facing a trash can and there is a door on my right.",
+      "predicted": "approach the door",
+      "ground_truth": [
+        "left"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602024538",
+      "scene_id": "scene0030_00",
+      "question": "How many short bookshelves are on my left side?",
+      "situation": "I am writing on a blackboard and there is a table on my left side.",
+      "predicted": "one,",
+      "ground_truth": [
+        "two"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602003091",
+      "scene_id": "scene0095_00",
+      "question": "How many monitors are in front?",
+      "situation": "I am sitting on a chair facing the table with a window on my right and a chair on my left.",
+      "predicted": "three,",
+      "ground_truth": [
+        "five"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602001816",
+      "scene_id": "scene0249_00",
+      "question": "What is beside the board that is far away on my right?",
+      "situation": "I am standing by an end of the long table with my back facing the window.",
+      "predicted": "wall,",
+      "ground_truth": [
+        "chair"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602027955",
+      "scene_id": "scene0144_00",
+      "question": "I there any more space in front that I can move forward?",
+      "situation": "I am opening the dresser with a chair within reach.",
+      "predicted": "yes",
+      "ground_truth": [
+        "no"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602009823",
+      "scene_id": "scene0595_00",
+      "question": "What color is the table in front of me?",
+      "situation": "I am facing the table and I just finished folding my clothes . That is why it all folded in front of me. Those machines are to my left.",
+      "predicted": "white,",
+      "ground_truth": [
+        "gray"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602032426",
+      "scene_id": "scene0207_00",
+      "question": "How many desks are behind me on the right?",
+      "situation": "I am cooking on the stove.",
+      "predicted": "zero,",
+      "ground_truth": [
+        "one"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602012395",
+      "scene_id": "scene0441_00",
+      "question": "What is above the sink?",
+      "situation": "I am urinating.",
+      "predicted": "mirror",
+      "ground_truth": [
+        "light"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602003619",
+      "scene_id": "scene0559_00",
+      "question": "To what direction should I move to sit on any of the couches?",
+      "situation": "I am facing a box on top of a table, while having a whiteboard on my left.",
+      "predicted": "move to the left.",
+      "ground_truth": [
+        "right"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602010019",
+      "scene_id": "scene0697_00",
+      "question": "Which object behind me is commonly described as a toy for girls?",
+      "situation": "I am facing the dresser to pick out clothes to wear while also watching the news on the TV in front of me.",
+      "predicted": "doll",
+      "ground_truth": [
+        "unknown"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602019271",
+      "scene_id": "scene0500_00",
+      "question": "What color is the chair to my left?",
+      "situation": "I am closing a window closest to the blackboard and there is a chair on my right within reach.",
+      "predicted": "blue,",
+      "ground_truth": [
+        "brown"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602026989",
+      "scene_id": "scene0019_00",
+      "question": "What can I insert into the vending machine behind me to buy something?",
+      "situation": "I am pulling a door while having a vending machine and a lamp on my left.",
+      "predicted": "coins,",
+      "ground_truth": [
+        "money"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602015582",
+      "scene_id": "scene0598_00",
+      "question": "If I wanted to get a book, where would I go?",
+      "situation": "I am searching for a horror book on the bookshelf while my back is turned to the table.",
+      "predicted": "bookshelf",
+      "ground_truth": [
+        "forward"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602007215",
+      "scene_id": "scene0251_00",
+      "question": "What is the color of the floor?",
+      "situation": "I am sitting on a chair while there is a table to my right on the other side of the room.",
+      "predicted": "not mentioned,",
+      "ground_truth": [
+        "brown"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602015819",
+      "scene_id": "scene0559_00",
+      "question": "Am I in a lounge?",
+      "situation": "Leaning on end of a table and checking the flyers on the whiteboard in front of me.",
+      "predicted": "it looks like you are in a lounge or a casual meeting area, as indicated by the presence of a table and what appears to be a whiteboard with notes or flyers on it. the setting seems relaxed and informal, which is typical for lounges where people might gather for discussions, work, or simply to relax.",
+      "ground_truth": [
+        "yes"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602015092",
+      "scene_id": "scene0342_00",
+      "question": "What is the color of the chairs in front of me?",
+      "situation": "I am sitting on the chair of the third row with two chairs on my right and one on my left.",
+      "predicted": "blue,",
+      "ground_truth": [
+        "brown"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602009127",
+      "scene_id": "scene0671_00",
+      "question": "What color is the table behind me?",
+      "situation": "I am standing in front of some carts with a bench behind me.",
+      "predicted": "brown,",
+      "ground_truth": [
+        "black"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602011551",
+      "scene_id": "scene0196_00",
+      "question": "I see the trash can in front of me?",
+      "situation": "I am standing on middle of table closest to the door and facing the door.",
+      "predicted": "the trash can is located to your right, slightly ahead of you.",
+      "ground_truth": [
+        "yes"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602029673",
+      "scene_id": "scene0196_00",
+      "question": "Is the brown door to my left open or closed?",
+      "situation": "I am facing a backpack on top of a table, while standing in the middle of the room between two groups of tables.",
+      "predicted": "closed,",
+      "ground_truth": [
+        "open"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602028871",
+      "scene_id": "scene0357_00",
+      "question": "What is at the foot of the stairs behind me?",
+      "situation": "I am in front of the pipe, and there is a shelf on my left.",
+      "predicted": "wall,",
+      "ground_truth": [
+        "backpack"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602027460",
+      "scene_id": "scene0488_00",
+      "question": "Where should I go to put something in the oven?",
+      "situation": "I am washing my hands.",
+      "predicted": "kitchen",
+      "ground_truth": [
+        "backward"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602003209",
+      "scene_id": "scene0187_00",
+      "question": "What is on 12 o'clock coffee table in front of me?",
+      "situation": "I am sitting on on a seat that comes with a small round pad on it.",
+      "predicted": "coffee cup,",
+      "ground_truth": [
+        "table"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602026055",
+      "scene_id": "scene0164_00",
+      "question": "How many kitchen cabinets did I leave open?",
+      "situation": "I am standing in front of the fridge holding a dessert, right next to me is the paper towel roll.",
+      "predicted": "zero,",
+      "ground_truth": [
+        "two"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602026963",
+      "scene_id": "scene0357_00",
+      "question": "What color is the door to my left?",
+      "situation": "I am going up the stairs to use the bathroom in the master bedroom.",
+      "predicted": "white,",
+      "ground_truth": [
+        "brown"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602022780",
+      "scene_id": "scene0207_00",
+      "question": "How many couches are on the right?",
+      "situation": "I am cooking on the stove.",
+      "predicted": "two",
+      "ground_truth": [
+        "one"
+      ],
+      "error_type": "wrong_count"
+    },
+    {
+      "question_id": "220602030862",
+      "scene_id": "scene0568_00",
+      "question": "How many tables are to my right?",
+      "situation": "I am opening the curtains in front of me before I go sit down on the red couch behind me to the right.",
+      "predicted": "two,",
+      "ground_truth": [
+        "one"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602010489",
+      "scene_id": "scene0568_00",
+      "question": "Where is the couch where I can sit?",
+      "situation": "I am standing on this mosaic rug and trying to figure out if the picture in front of me is straight and not crooked.",
+      "predicted": "the couch is located to the right of the picture.",
+      "ground_truth": [
+        "back left"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602007223",
+      "scene_id": "scene0063_00",
+      "question": "Is the table round or rectangle?",
+      "situation": "I am sitting on the chair eating at the table.",
+      "predicted": "round,",
+      "ground_truth": [
+        "rectangle"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602019614",
+      "scene_id": "scene0077_00",
+      "question": "Am I in the washroom?",
+      "situation": "I am facing a trash can and there is a door on my right.",
+      "predicted": "yes,",
+      "ground_truth": [
+        "no"
+      ],
+      "error_type": "wrong_yes_no"
+    },
+    {
+      "question_id": "220602011688",
+      "scene_id": "scene0598_00",
+      "question": "What is to my right side that I can use to view the outside?",
+      "situation": "I am sitting on a chair facing the blinds while using the laptop to conduct research on my school project. There is no more seat to my right.",
+      "predicted": "blinds,",
+      "ground_truth": [
+        "windows"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602027196",
+      "scene_id": "scene0671_00",
+      "question": "Can the amount of tray behind me divided by three?",
+      "situation": "I am opening the cabinet to fine paper to place on the table behind me.",
+      "predicted": "yes",
+      "ground_truth": [
+        "no"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602029077",
+      "scene_id": "scene0343_00",
+      "question": "Am I in the washroom?",
+      "situation": "I am standing in front of a multicolored table and facing the white table in direction.",
+      "predicted": "no,",
+      "ground_truth": [
+        "identical"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602023686",
+      "scene_id": "scene0081_00",
+      "question": "What pattern can be seen on the couch in front of me?",
+      "situation": "I am putting my hands on the round table with no ottomans while there is an ottoman in my two o'clock direction.",
+      "predicted": "striped,",
+      "ground_truth": [
+        "stripes"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602009502",
+      "scene_id": "scene0695_00",
+      "question": "What is to my left that I can use to write on?",
+      "situation": "I am facing a window, while having a laundry hamper on my right and a box with a bag on top of it on my left.",
+      "predicted": "whiteboard,",
+      "ground_truth": [
+        "desk"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602013767",
+      "scene_id": "scene0277_00",
+      "question": "What is on top of the desk on my right?",
+      "situation": "I am throwing litter into the recycling bin and looking at the radiator.",
+      "predicted": "monitor,",
+      "ground_truth": [
+        "shelf"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602009859",
+      "scene_id": "scene0648_00",
+      "question": "What color is the blanket behind me?",
+      "situation": "Sitting in front of a desk and working, while having a closet on my left.",
+      "predicted": "red",
+      "ground_truth": [
+        "purple"
+      ],
+      "error_type": "wrong_color"
+    },
+    {
+      "question_id": "220602001296",
+      "scene_id": "scene0663_00",
+      "question": "What is mounted on the wall to my left?",
+      "situation": "I am sitting on a chair and there are several backpacks with a sutcase on the floor in front of me.",
+      "predicted": "picture,",
+      "ground_truth": [
+        "shelves"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602017105",
+      "scene_id": "scene0356_00",
+      "question": "What is on the 6 o'clock of the bed that is on my 1 o'clock?",
+      "situation": "I am standing between a door and a dresser, facing a window.",
+      "predicted": "pillow,",
+      "ground_truth": [
+        "radiator"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602002875",
+      "scene_id": "scene0553_00",
+      "question": "How can I get some toilet paper from where I am?",
+      "situation": "Just entered the room.",
+      "predicted": "go to the toilet paper dispenser",
+      "ground_truth": [
+        "walk forward"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602009207",
+      "scene_id": "scene0329_00",
+      "question": "What is on the 12 o'clock couch in front of me?",
+      "situation": "I am facing a couch, while having a lamp behind me.",
+      "predicted": "pillow,",
+      "ground_truth": [
+        "whiteboard"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602013373",
+      "scene_id": "scene0144_00",
+      "question": "Is the number of chairs to my left odd or even?",
+      "situation": "I am opening the dresser with a chair within reach.",
+      "predicted": "odd,",
+      "ground_truth": [
+        "even"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602009265",
+      "scene_id": "scene0500_00",
+      "question": "Is the table to my left round or rectangular?",
+      "situation": "I am sitting on a chair closest to the blackboard with a chair to my right within reach.",
+      "predicted": "round,",
+      "ground_truth": [
+        "rectangular"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602021128",
+      "scene_id": "scene0595_00",
+      "question": "What is on top of the laundry machine to my left?",
+      "situation": "I am grabbing the dried clothing inside the clothes dryer while the door to the dryer is on my right.",
+      "predicted": "clothes,",
+      "ground_truth": [
+        "laundry basket"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602016894",
+      "scene_id": "scene0693_00",
+      "question": "Is the number of mirrors on my right and behind me even or odd?",
+      "situation": "I am facing the bath tub, the vanity is to the left and the door is to the right.",
+      "predicted": "even,",
+      "ground_truth": [
+        "odd"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602019463",
+      "scene_id": "scene0131_00",
+      "question": "Can I still walk forward?",
+      "situation": "I am writing on the whiteboard and there is an office chair on my right and a mini fridge on my left.",
+      "predicted": "based on the image provided, it appears that you are standing in a space with an office chair to your right and a mini fridge to your left. if you need to walk forward, you would likely have to navigate around these objects. the office chair is closer to you than the mini fridge, so you might need to walk past the office chair first before you can get to the mini fridge if it's further ahead. it's important to be aware of your surroundings and move cautiously to avoid bumping into any objects.",
+      "ground_truth": [
+        "no"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602011465",
+      "scene_id": "scene0342_00",
+      "question": "Are the chairs in front of me wood or leather?",
+      "situation": "I am standing on top of table and facing the rows of chairs.",
+      "predicted": "wood,",
+      "ground_truth": [
+        "leather"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602010590",
+      "scene_id": "scene0558_00",
+      "question": "What is blue and on the chair behind me?",
+      "situation": "I am looking at bookshelf and the bag is behind me and the window is on my right.",
+      "predicted": "pillow,",
+      "ground_truth": [
+        "backpack"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602031433",
+      "scene_id": "scene0665_00",
+      "question": "How many chairs are at the table directly behind me?",
+      "situation": "I am facing a table with some chairs under it, while having another table with some chairs behind me. I can see some desks over the round table in front of me.",
+      "predicted": "four,",
+      "ground_truth": [
+        "three"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602022961",
+      "scene_id": "scene0187_00",
+      "question": "Is the amount of table on my left side, odd or even?",
+      "situation": "I am standing on top of a coffee table facing another one, while there is a chair on my left.",
+      "predicted": "even,",
+      "ground_truth": [
+        "odd"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602011382",
+      "scene_id": "scene0670_00",
+      "question": "How many trash can are on my left side?",
+      "situation": "Dumping some expired food taken from the fridge to my immediate right.",
+      "predicted": "one",
+      "ground_truth": [
+        "two"
+      ],
+      "error_type": "wrong_count"
+    },
+    {
+      "question_id": "220602031507",
+      "scene_id": "scene0595_00",
+      "question": "Is the door to the dryer closest to me, opened or closed?",
+      "situation": "I am reading the instructions on how to use the dryer before I place all my wet clothing on the clothes dryer on my left.",
+      "predicted": "closed",
+      "ground_truth": [
+        "opened"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602024844",
+      "scene_id": "scene0550_00",
+      "question": "Which direction should I go if I want to exit the room?",
+      "situation": "Sitting on the toilet sitting doing my business and also escaping from the infuriating meeting.",
+      "predicted": "to exit the room, you should head towards the door. it appears to be on the right side of the room from where you are sitting.",
+      "ground_truth": [
+        "left"
+      ],
+      "error_type": "hallucinated_object"
+    },
+    {
+      "question_id": "220602015476",
+      "scene_id": "scene0695_00",
+      "question": "Is the bed to my right messy or tidy?",
+      "situation": "I turn on the lamp in front of me before I open the blinds that are on my left side.",
+      "predicted": "tidy,",
+      "ground_truth": [
+        "messy"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602020875",
+      "scene_id": "scene0663_00",
+      "question": "How many doors are in the room?",
+      "situation": "I am sitting on an office chair while having a keyboard on my left and a window behind me.",
+      "predicted": "two,",
+      "ground_truth": [
+        "one"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602004004",
+      "scene_id": "scene0251_00",
+      "question": "Is the number of trash cans on my right even or odd?",
+      "situation": "I am facing an opened door and there are some trash cans on my right.",
+      "predicted": "even,",
+      "ground_truth": [
+        "odd"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602004859",
+      "scene_id": "scene0629_00",
+      "question": "What shape is the end table on my back left?",
+      "situation": "I am facing the door and there are some cabinets on my right.",
+      "predicted": "round,",
+      "ground_truth": [
+        "square"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602007094",
+      "scene_id": "scene0549_00",
+      "question": "If I stand up can I be able to walk forward?",
+      "situation": "I am sitting on an armchair and a rectangle table is behind me.",
+      "predicted": "yes",
+      "ground_truth": [
+        "unknown"
+      ],
+      "error_type": "wrong_yes_no"
+    },
+    {
+      "question_id": "220602018010",
+      "scene_id": "scene0559_00",
+      "question": "What is the shape of this table?",
+      "situation": "I am facing a box on top of a table, while having a whiteboard on my left.",
+      "predicted": "rectangle,",
+      "ground_truth": [
+        "rectangular"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602025507",
+      "scene_id": "scene0599_00",
+      "question": "What is above the trash can that is on my 7 o'clock?",
+      "situation": "I am sitting on a chair by the end of the table, having my lunch break while watching TV in front of me.",
+      "predicted": "wall,",
+      "ground_truth": [
+        "paper towel dispenser"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602002694",
+      "scene_id": "scene0609_00",
+      "question": "All the tables inside the room are made of the same material; true or false?",
+      "situation": "Sitting by a table against the wall. There is no more chair on my left.",
+      "predicted": "false.",
+      "ground_truth": [
+        "true"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602016452",
+      "scene_id": "scene0251_00",
+      "question": "What is above the table that is on my 10 o'clock?",
+      "situation": "I am entering the room and I can see a trash can to my right.",
+      "predicted": "picture,",
+      "ground_truth": [
+        "window"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602016324",
+      "scene_id": "scene0064_00",
+      "question": "Are the black couches hard or soft?",
+      "situation": "I am exiting the room.",
+      "predicted": "hard",
+      "ground_truth": [
+        "soft"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602025465",
+      "scene_id": "scene0629_00",
+      "question": "What is on the right of the cabinet that is on my 5 o'clock?",
+      "situation": "I am standing in front of an end table and there is a matress in my two o'clock direction.",
+      "predicted": "wall,",
+      "ground_truth": [
+        "cabinet"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602010777",
+      "scene_id": "scene0064_00",
+      "question": "If I wanted to read a book, what direction should I go, forward or left?",
+      "situation": "I am sitting on an armchair with a bookshelf on my right and an armchair behind me.",
+      "predicted": "left",
+      "ground_truth": [
+        "forward"
+      ],
+      "error_type": "wrong_spatial"
+    },
+    {
+      "question_id": "220602023544",
+      "scene_id": "scene0217_00",
+      "question": "How many beds are available to sleep on?",
+      "situation": "I am facing a radiator that is behind a recycling bin and a trash can, while having a wardrobe closet behind me.",
+      "predicted": "zero,",
+      "ground_truth": [
+        "two"
+      ],
+      "error_type": "unrelated_hallucination"
+    },
+    {
+      "question_id": "220602000538",
+      "scene_id": "scene0559_00",
+      "question": "Is there a clock on the wall to my left?",
+      "situation": "I am facing a box on top of a table, while having a whiteboard on my left.",
+      "predicted": "yes,",
+      "ground_truth": [
+        "no"
+      ],
+      "error_type": "wrong_spatial"
+    }
+  ]
+}

@@ -101,7 +101,10 @@ class SigLipVisionConfig(PretrainedConfig):
 
     @classmethod
     def from_pretrained(cls, pretrained_model_name_or_path: Union[str, os.PathLike], **kwargs) -> "PretrainedConfig":
-        cls._set_token_in_kwargs(kwargs)
+        # _set_token_in_kwargs was removed in transformers 5.x;
+        # its logic is now handled internally by get_config_dict.
+        if hasattr(cls, "_set_token_in_kwargs"):
+            cls._set_token_in_kwargs(kwargs)
 
         config_dict, kwargs = cls.get_config_dict(pretrained_model_name_or_path, **kwargs)
 
@@ -564,6 +567,17 @@ class SigLipVisionTower(nn.Module):
         if self.is_loaded:
             rank0_print("{} is already loaded, `load_model` called again, skipping.".format(self.vision_tower_name))
             return
+
+        # In transformers >=5.x, the outer from_pretrained (with
+        # low_cpu_mem_usage=True) sets the default device to 'meta' during
+        # model construction.  A nested from_pretrained inside __init__ is
+        # rejected when device_map=None because transformers detects the meta
+        # context.  Passing device_map="cpu" bypasses that check and loads the
+        # vision tower weights to CPU (they are moved to GPU later).
+        if device_map is None:
+            _in_meta = torch.tensor([]).device.type == "meta"
+            if _in_meta:
+                device_map = "cpu"
 
         self.vision_tower = SigLipVisionModel.from_pretrained(self.vision_tower_name, device_map=device_map)
 

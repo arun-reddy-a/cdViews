@@ -29,7 +29,13 @@ def preprocess_qwen(sources, tokenizer: transformers.PreTrainedTokenizer, has_im
                     system_message: str = "You are a helpful assistant.") -> Dict:
     roles = {"human": "<|im_start|>user", "gpt": "<|im_start|>assistant"}
 
-    im_start, im_end = tokenizer.additional_special_tokens_ids
+    # In transformers >=5.x the TokenizersBackend may not expose
+    # additional_special_tokens_ids; use convert_tokens_to_ids instead.
+    if hasattr(tokenizer, "additional_special_tokens_ids"):
+        im_start, im_end = tokenizer.additional_special_tokens_ids
+    else:
+        im_start = tokenizer.convert_tokens_to_ids("<|im_start|>")
+        im_end = tokenizer.convert_tokens_to_ids("<|im_end|>")
     nl_tokens = tokenizer("\n").input_ids
     _system = tokenizer("system").input_ids + nl_tokens
     _user = tokenizer("user").input_ids + nl_tokens
