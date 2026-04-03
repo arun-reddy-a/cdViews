@@ -7,3 +7,4 @@ data/
 *.pt
 uv.lock
 flash-attention/
+loc/

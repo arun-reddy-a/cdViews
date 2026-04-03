@@ -1,0 +1,701 @@
+{
+  "scene_id": "scene0535_00",
+  "n_frames_total": 35,
+  "n_keyframes_used": 35,
+  "n_discovery_classes": 178,
+  "discovered_classes": [
+    "chair",
+    "office chair",
+    "armchair",
+    "table",
+    "dining table",
+    "coffee table",
+    "sofa",
+    "couch",
+    "loveseat",
+    "desk",
+    "bed",
+    "nightstand",
+    "dresser",
+    "counter",
+    "countertop",
+    "stool",
+    "bar stool",
+    "bench",
+    "ottoman",
+    "futon",
+    "recliner",
+    "rocking chair",
+    "shelf",
+    "bookshelf",
+    "cabinet",
+    "drawer",
+    "wardrobe",
+    "closet",
+    "cupboard",
+    "filing cabinet",
+    "storage bin",
+    "chest",
+    "door",
+    "window",
+    "curtain",
+    "blinds",
+    "shutter",
+    "lamp",
+    "floor lamp",
+    "table lamp",
+    "ceiling light",
+    "chandelier",
+    "light fixture",
+    "sconce",
+    "monitor",
+    "computer monitor",
+    "tv",
+    "television",
+    "screen",
+    "keyboard",
+    "computer keyboard",
+    "laptop",
+    "printer",
+    "speaker",
+    "projector",
+    "refrigerator",
+    "fridge",
+    "microwave",
+    "oven",
+    "stove",
+    "dishwasher",
+    "toaster",
+    "coffee maker",
+    "sink",
+    "toilet",
+    "bathtub",
+    "shower",
+    "shower curtain",
+    "mirror",
+    "picture",
+    "picture frame",
+    "painting",
+    "clock",
+    "poster",
+    "whiteboard",
+    "bulletin board",
+    "calendar",
+    "pillow",
+    "cushion",
+    "blanket",
+    "towel",
+    "rug",
+    "carpet",
+    "mat",
+    "curtain",
+    "tablecloth",
+    "bottle",
+    "cup",
+    "mug",
+    "bowl",
+    "plate",
+    "glass",
+    "jar",
+    "can",
+    "pitcher",
+    "vase",
+    "bag",
+    "backpack",
+    "suitcase",
+    "box",
+    "cardboard box",
+    "bin",
+    "trash can",
+    "recycling bin",
+    "basket",
+    "crate",
+    "book",
+    "paper",
+    "notebook",
+    "magazine",
+    "newspaper",
+    "phone",
+    "cell phone",
+    "remote",
+    "remote control",
+    "pen",
+    "pencil",
+    "scissors",
+    "tape",
+    "stapler",
+    "fan",
+    "heater",
+    "radiator",
+    "air conditioner",
+    "humidifier",
+    "vacuum cleaner",
+    "iron",
+    "plant",
+    "potted plant",
+    "flower",
+    "flower pot",
+    "tree",
+    "piano",
+    "keyboard instrument",
+    "guitar",
+    "violin",
+    "drum",
+    "bookcase",
+    "shoe rack",
+    "coat rack",
+    "umbrella stand",
+    "wine rack",
+    "tv stand",
+    "entertainment center",
+    "sideboard",
+    "umbrella",
+    "hat",
+    "helmet",
+    "shoe",
+    "boot",
+    "coat",
+    "jacket",
+    "toy",
+    "stuffed animal",
+    "ball",
+    "board game",
+    "candle",
+    "tissue box",
+    "soap dispenser",
+    "toothbrush holder",
+    "fire extinguisher",
+    "smoke detector",
+    "column",
+    "pillar",
+    "beam",
+    "pipe",
+    "vent",
+    "electrical outlet",
+    "light switch",
+    "thermostat",
+    "doorknob",
+    "stairs",
+    "staircase",
+    "railing",
+    "banister",
+    "wall",
+    "floor",
+    "ceiling"
+  ],
+  "n_raw_detections": 275,
+  "n_objects": 51,
+  "objects": [
+    {
+      "name": "storage bin",
+      "position_3d": [
+        2.3979123239970397,
+        2.499266916694885,
+        1.0694172846031413
+      ],
+      "n_views": 12,
+      "avg_confidence": 0.3259
+    },
+    {
+      "name": "picture",
+      "position_3d": [
+        4.104834534116698,
+        2.357327161761826,
+        1.100013058046633
+      ],
+      "n_views": 11,
+      "avg_confidence": 0.6318
+    },
+    {
+      "name": "chair",
+      "position_3d": [
+        3.260599223551819,
+        2.6665356266322084,
+        0.6515849622530399
+      ],
+      "n_views": 10,
+      "avg_confidence": 0.4548
+    },
+    {
+      "name": "chair",
+      "position_3d": [
+        2.0972825031272073,
+        3.393822502072603,
+        1.1437854549955555
+      ],
+      "n_views": 9,
+      "avg_confidence": 0.3446
+    },
+    {
+      "name": "lamp",
+      "position_3d": [
+        1.4089000263234044,
+        4.203596234729091,
+        2.0489868205750126
+      ],
+      "n_views": 7,
+      "avg_confidence": 0.5185
+    },
+    {
+      "name": "chair",
+      "position_3d": [
+        2.968182845847789,
+        3.073393150139915,
+        1.0050084615669943
+      ],
+      "n_views": 7,
+      "avg_confidence": 0.3424
+    },
+    {
+      "name": "box",
+      "position_3d": [
+        2.192866645013338,
+        2.381745546980049,
+        1.2463886201781982
+      ],
+      "n_views": 7,
+      "avg_confidence": 0.2938
+    },
+    {
+      "name": "chair",
+      "position_3d": [
+        0.7563912870348508,
+        3.62355225234562,
+        1.229096233493004
+      ],
+      "n_views": 6,
+      "avg_confidence": 0.4962
+    },
+    {
+      "name": "box",
+      "position_3d": [
+        3.8819637616557294,
+        2.604133000238235,
+        0.7383186753303148
+      ],
+      "n_views": 6,
+      "avg_confidence": 0.3189
+    },
+    {
+      "name": "sideboard",
+      "position_3d": [
+        2.7052097714867993,
+        2.545198720749194,
+        0.8444641670123317
+      ],
+      "n_views": 6,
+      "avg_confidence": 0.2866
+    },
+    {
+      "name": "desk",
+      "position_3d": [
+        1.793432907882822,
+        3.899499788205089,
+        1.4993898372974395
+      ],
+      "n_views": 5,
+      "avg_confidence": 0.4802
+    },
+    {
+      "name": "towel",
+      "position_3d": [
+        1.5817602980499421,
+        4.375839268456962,
+        1.9104343839263518
+      ],
+      "n_views": 5,
+      "avg_confidence": 0.4137
+    },
+    {
+      "name": "sideboard",
+      "position_3d": [
+        4.376341557343222,
+        2.485387791850857,
+        0.8627870587397617
+      ],
+      "n_views": 5,
+      "avg_confidence": 0.402
+    },
+    {
+      "name": "tissue box",
+      "position_3d": [
+        2.4364568386700656,
+        2.4058119094071486,
+        1.169427917200783
+      ],
+      "n_views": 5,
+      "avg_confidence": 0.3959
+    },
+    {
+      "name": "storage bin",
+      "position_3d": [
+        3.854741396404383,
+        2.60795396923968,
+        0.741407116898525
+      ],
+      "n_views": 5,
+      "avg_confidence": 0.3859
+    },
+    {
+      "name": "cabinet",
+      "position_3d": [
+        4.399417279865937,
+        2.468067153097304,
+        0.781761607820276
+      ],
+      "n_views": 5,
+      "avg_confidence": 0.3564
+    },
+    {
+      "name": "window",
+      "position_3d": [
+        0.1461316543168601,
+        4.178534965148654,
+        2.1804937550468155
+      ],
+      "n_views": 5,
+      "avg_confidence": 0.2614
+    },
+    {
+      "name": "desk",
+      "position_3d": [
+        4.320740888896397,
+        2.490324730070178,
+        0.9778588106075287
+      ],
+      "n_views": 4,
+      "avg_confidence": 0.431
+    },
+    {
+      "name": "stool",
+      "position_3d": [
+        3.7350593560372225,
+        3.6686106336688775,
+        0.20779475173707754
+      ],
+      "n_views": 4,
+      "avg_confidence": 0.3916
+    },
+    {
+      "name": "piano",
+      "position_3d": [
+        4.125406827449672,
+        2.585016675884444,
+        0.9088514162438335
+      ],
+      "n_views": 4,
+      "avg_confidence": 0.3468
+    },
+    {
+      "name": "filing cabinet",
+      "position_3d": [
+        2.6535927803349937,
+        2.6036477543850087,
+        0.8627300087598573
+      ],
+      "n_views": 4,
+      "avg_confidence": 0.3389
+    },
+    {
+      "name": "window",
+      "position_3d": [
+        0.1538213570450206,
+        2.865845940705123,
+        1.6989091640120166
+      ],
+      "n_views": 4,
+      "avg_confidence": 0.3154
+    },
+    {
+      "name": "chair",
+      "position_3d": [
+        4.29443822433991,
+        3.643656388236682,
+        0.7970041003635621
+      ],
+      "n_views": 4,
+      "avg_confidence": 0.2322
+    },
+    {
+      "name": "tissue box",
+      "position_3d": [
+        3.740775275260146,
+        2.445655208370594,
+        1.0927135590161883
+      ],
+      "n_views": 3,
+      "avg_confidence": 0.8067
+    },
+    {
+      "name": "storage bin",
+      "position_3d": [
+        3.3949094646231903,
+        3.9335884909361964,
+        0.6239543828287543
+      ],
+      "n_views": 3,
+      "avg_confidence": 0.7207
+    },
+    {
+      "name": "chair",
+      "position_3d": [
+        1.3179150230061778,
+        3.3187332575738595,
+        1.4678797039100566
+      ],
+      "n_views": 3,
+      "avg_confidence": 0.5054
+    },
+    {
+      "name": "remote",
+      "position_3d": [
+        4.320165602382365,
+        2.540628899109373,
+        0.6749341175152272
+      ],
+      "n_views": 3,
+      "avg_confidence": 0.4606
+    },
+    {
+      "name": "lamp",
+      "position_3d": [
+        2.48273204621066,
+        4.045792289826962,
+        1.8606637671591308
+      ],
+      "n_views": 3,
+      "avg_confidence": 0.4386
+    },
+    {
+      "name": "mirror",
+      "position_3d": [
+        3.830618184013082,
+        2.183425791593852,
+        1.1286694287769838
+      ],
+      "n_views": 3,
+      "avg_confidence": 0.3933
+    },
+    {
+      "name": "cabinet",
+      "position_3d": [
+        1.5154720223900595,
+        2.3876228220174482,
+        1.3873227784426863
+      ],
+      "n_views": 3,
+      "avg_confidence": 0.3905
+    },
+    {
+      "name": "plate",
+      "position_3d": [
+        2.612993923212304,
+        2.41664530305165,
+        1.0151517455126358
+      ],
+      "n_views": 3,
+      "avg_confidence": 0.3457
+    },
+    {
+      "name": "shelf",
+      "position_3d": [
+        1.5154297988144385,
+        2.335431720387995,
+        1.3552537774909323
+      ],
+      "n_views": 3,
+      "avg_confidence": 0.3099
+    },
+    {
+      "name": "mug",
+      "position_3d": [
+        1.5367830190622012,
+        4.194761499775295,
+        1.6112075184790895
+      ],
+      "n_views": 3,
+      "avg_confidence": 0.2839
+    },
+    {
+      "name": "keyboard",
+      "position_3d": [
+        4.294694626368337,
+        2.5698580462419267,
+        0.8093203417709001
+      ],
+      "n_views": 3,
+      "avg_confidence": 0.2713
+    },
+    {
+      "name": "refrigerator",
+      "position_3d": [
+        1.091242485474008,
+        2.435623803158099,
+        1.613728732813297
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.5318
+    },
+    {
+      "name": "tissue box",
+      "position_3d": [
+        1.9318651835895246,
+        4.194209317999791,
+        1.5480213813604138
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.4651
+    },
+    {
+      "name": "filing cabinet",
+      "position_3d": [
+        3.4080122231499366,
+        3.891849515311379,
+        0.6970579147268581
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.441
+    },
+    {
+      "name": "jacket",
+      "position_3d": [
+        2.9772113345891764,
+        2.9986268084828254,
+        0.9761802599347993
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.4002
+    },
+    {
+      "name": "dresser",
+      "position_3d": [
+        4.437420417054604,
+        2.4608905940087915,
+        0.7192461514398901
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.3903
+    },
+    {
+      "name": "lamp",
+      "position_3d": [
+        2.2679387692224235,
+        4.424158291504023,
+        1.7478639602848904
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.3678
+    },
+    {
+      "name": "cupboard",
+      "position_3d": [
+        3.4265721690588986,
+        3.8815008876135226,
+        0.8815978327011267
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.3621
+    },
+    {
+      "name": "stool",
+      "position_3d": [
+        0.46452760164503737,
+        3.6143609076567498,
+        1.2128531859181069
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.3094
+    },
+    {
+      "name": "chair",
+      "position_3d": [
+        3.6852390374374115,
+        3.71479226990484,
+        0.22582613788492978
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2989
+    },
+    {
+      "name": "rug",
+      "position_3d": [
+        3.1896325000819212,
+        2.8278097908276907,
+        0.6134805228422546
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2877
+    },
+    {
+      "name": "plant",
+      "position_3d": [
+        0.20219521193141543,
+        2.82351575699263,
+        1.6104719368703706
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.284
+    },
+    {
+      "name": "book",
+      "position_3d": [
+        1.902548420497055,
+        4.184300809981983,
+        1.55445425742085
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2624
+    },
+    {
+      "name": "jar",
+      "position_3d": [
+        1.5360708411024182,
+        4.192753389780707,
+        1.608539134913545
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2508
+    },
+    {
+      "name": "box",
+      "position_3d": [
+        0.47123937558821316,
+        2.854247414514658,
+        0.7628773439179652
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2458
+    },
+    {
+      "name": "picture",
+      "position_3d": [
+        0.25426744114252464,
+        2.826432591619276,
+        1.5541201295461422
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2381
+    },
+    {
+      "name": "bed",
+      "position_3d": [
+        3.2006408865517106,
+        2.5384376551772765,
+        0.6820779779017918
+      ],
+      "n_views": 1,
+      "avg_confidence": 0.5661
+    },
+    {
+      "name": "tv stand",
+      "position_3d": [
+        2.636455915386315,
+        2.6388117973851077,
+        0.9080327169235873
+      ],
+      "n_views": 1,
+      "avg_confidence": 0.41
+    }
+  ],
+  "elapsed_seconds": 19.0
+}
