@@ -30,10 +30,6 @@ bidict==0.23.1
 bitsandbytes==0.41.0
 black==24.1.0
 bleach==6.1.0
-byted-remote-ikernel==0.4.8
-byted-torch-monitor==0.0.1
-byted-wandb==0.13.72
-bytedance-context==0.7.1
 bytedance-metrics==0.5.1
 bytedance.modelhub==0.0.64
 bytedance.servicediscovery==0.1.2
@@ -197,8 +193,6 @@ pathvalidate==3.2.0
 peft==0.4.0
 pexpect==4.8.0
 pillow==10.3.0
-pip==23.3.1
-pip==24.0
 platformdirs==4.2.1
 pluggy==1.5.0
 ply==3.11
