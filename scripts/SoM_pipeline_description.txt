@@ -1,0 +1,320 @@
+================================================================================
+  TECHNICAL DESCRIPTION: 2D Detection → 3D Object Localization Pipeline
+  As implemented in scripts/SoM.ipynb
+================================================================================
+
+OVERVIEW
+--------
+The notebook implements a multi-view, open-vocabulary 3D object localization
+system for indoor ScanNet scenes.  Given a set of posed RGB-D frames, it
+produces a 3D object map: a list of (object_name, xyz_position) tuples in
+world coordinates.  The pipeline has four major stages:
+
+  1. Set-of-Mark (SoM) image generation (class-agnostic segmentation + visual
+     prompting)
+  2. Open-vocabulary scene class discovery (CLIP zero-shot classification)
+  3. Per-frame detection, segmentation, and depth back-projection (2D → 3D)
+  4. Multi-view fusion via DBSCAN clustering
+
+
+================================================================================
+STAGE 0 — DATA LOADING  (ScanNet frames_square format)
+================================================================================
+
+The ScanNet dataset provides, for every frame in a scene:
+
+  • color/<frame_id>.jpg  — RGB image
+  • depth/<frame_id>.png  — uint16 depth map in millimeters
+  • pose/<frame_id>.txt   — 4×4 camera-to-world extrinsic matrix (SE(3))
+  • intrinsic_depth.txt   — 4×4 intrinsic matrix (at 640×480 native res)
+
+Helper functions:
+
+  load_intrinsics(scene_dir)
+      Reads the 4×4 intrinsic matrix K.  Because the depth images in
+      frames_square are 320×240 (half the native 640×480 resolution), the
+      function detects the mismatch by comparing cx to the actual depth-image
+      width, and scales fx, fy, cx, cy by 0.5 when needed.
+
+  load_pose(scene_dir, frame_id)
+      Returns the 4×4 camera-to-world pose.  Returns None if any element is
+      inf or NaN (corrupted pose).
+
+  load_depth(scene_dir, frame_id)
+      Reads the uint16 PNG and converts to float32 meters (÷ 1000).
+
+  get_frame_ids(scene_dir)
+      Globs color/*.jpg and returns sorted integer frame IDs.
+
+  select_keyframes(frame_ids, n_keyframes)
+      Evenly samples n_keyframes indices via np.linspace to avoid processing
+      every frame while still covering the full trajectory.
+
+
+================================================================================
+STAGE 1 — SET-OF-MARK (SoM) IMAGE GENERATION
+================================================================================
+
+Reference: "Set-of-Mark Prompting" (Yang et al., 2023, arXiv:2310.11441)
+
+Purpose:
+  Produce a visually-prompted image where every detected segment is overlaid
+  with a colour-coded translucent mask and a numbered label at the segment
+  centroid.  This is useful for vision-language models that can reference
+  spatial regions by mark ID.
+
+Model:
+  SAM 2.1 Large (sam2.1_l.pt), loaded via Ultralytics' SAM2Predictor wrapper.
+
+Procedure (function: generate_som_image):
+
+  1. Load the RGB image and compute its resolution (H×W).
+
+  2. Run SAM2 in "segment everything" mode:
+       • points_stride=16 — dense grid sampling for automatic mask proposals
+       • crop_n_layers=1  — one additional crop layer for multi-scale coverage
+       • conf_thres=0.86  — predicted-IoU threshold for mask quality
+       • stability_score_thresh=0.92 — stability score filtering
+
+  3. Post-process masks:
+       a. Resize each mask to (H, W) if dimensions don't match (bilinear →
+          nearest-neighbour for binary masks).
+       b. Filter out masks with area < min_area_frac × H × W (default 0.05%
+          of total pixels).
+       c. Sort remaining masks largest-first so small segments paint on top.
+
+  4. Colour assignment:
+       Use golden-ratio hue spacing (Δhue ≈ 0.618) in HSV colour space
+       (S=0.75, V=0.95), converting to RGB.  This maximises perceptual
+       distance between adjacent colours.
+
+  5. Overlay rendering:
+       a. For each mask, alpha-blend the segment colour onto the image:
+              overlay[mask] = (1 − α) · original + α · colour
+          with α = 0.3 by default.
+       b. Draw contour outlines (2-pixel width) using cv2.findContours +
+          cv2.drawContours on a separate layer, then composite.
+
+  6. Numbered labels:
+       a. For each segment, compute the mask centroid (mean of masked pixel
+          coordinates).
+       b. Draw a small rounded black rectangle behind the label number for
+          contrast, then render the white label text using Pillow's ImageDraw.
+       c. Font size scales with image size: max(12, min(H,W) / 45).
+
+  Output: (som_image, n_marks) — the annotated NumPy array and mark count.
+
+
+================================================================================
+STAGE 2 — OPEN-VOCABULARY SCENE CLASS DISCOVERY  (CLIP + SAM2)
+================================================================================
+
+Problem:
+  We don't know a priori which object categories appear in an arbitrary scene.
+  Running YOLO-World with a massive vocabulary produces excessive false
+  positives.  So we first *discover* which classes are relevant.
+
+Models:
+  • CLIP ViT-B/32 for zero-shot image classification
+  • SAM 2.1 Large for class-agnostic segmentation
+
+Candidate vocabulary:
+  178 indoor object categories (furniture, electronics, kitchenware, bathroom
+  fixtures, decor, structural elements, etc.).
+
+Procedure (function: discover_scene_classes):
+
+  1. Sample n_discovery_frames (default 5) keyframes from the scene.
+
+  2. Pre-compute CLIP text embeddings for all 178 candidate class names.
+
+  3. For each discovery frame:
+       a. Run SAM2 segment-everything (points_stride=32, crop_n_layers=0,
+          conf_thres=0.88, stability_score_thresh=0.92) — coarser/faster
+          settings than SoM since we just need rough crops.
+       b. For each mask with area ≥ min_area_frac × H × W:
+            i.  Compute tight bounding box + 5-pixel padding.
+            ii. Crop the RGB image to the bounding box.
+            iii.Encode the crop with CLIP's image encoder.
+            iv. Compute cosine similarity to all 178 text embeddings.
+            v.  Apply softmax → pick the argmax class.
+            vi. If best_prob ≥ clip_threshold (0.20), record the class name
+                and keep the maximum score across all frames.
+
+  4. Return the set of discovered class names sorted by descending max score.
+
+  Fallback: if discovery finds zero classes, fall back to the full 178-class
+  candidate list.
+
+
+================================================================================
+STAGE 3 — PER-FRAME DETECTION + SEGMENTATION + 2D→3D BACK-PROJECTION
+================================================================================
+
+Models:
+  • YOLO-World v2 (yolov8x-worldv2.pt) — open-vocabulary object detector
+  • SAM 2.1 Large — box-prompted instance segmentation
+
+The discovered class vocabulary from Stage 2 is injected into YOLO-World
+via yolo_model.set_classes(scene_classes), restricting detection to only
+relevant categories.
+
+Procedure (function: detect_and_locate_3d, called per frame):
+
+  3a. Object Detection (YOLO-World)
+  ---------------------------------
+  1. Load the RGB image for the frame.
+  2. Run YOLO-World with conf=0.10 (low threshold; rely on multi-view
+     fusion to filter false positives later).
+  3. Extract: bounding boxes (xyxy), class IDs, confidence scores, and
+     human-readable class names.
+
+  3b. Instance Segmentation (SAM2, box-prompted)
+  -----------------------------------------------
+  4. Pass the detected bounding boxes to SAM2 as box prompts.
+  5. SAM2 returns a precise binary mask per bounding box.
+  6. Resize each mask to depth-map resolution (320×240) if needed.
+  7. Discard masks with pixel area < min_mask_area (150 pixels).
+
+  3c. Depth Back-projection (2D → 3D)
+  ------------------------------------
+  For each valid mask, the function mask_to_3d_centroid performs:
+
+  8. Gather all (u, v) pixel coordinates inside the binary mask.
+  9. Look up the corresponding depth values d(u,v) from the depth map.
+  10. Filter out invalid depths: keep only pixels with 0.01 m < d < 5.0 m
+      (reject zero-depth holes and noisy far-range readings).
+  11. If fewer than 10 valid pixels remain, discard the detection.
+  12. Subsample to at most 500 points (random without replacement) for speed.
+
+  13. Unproject each pixel to camera-frame 3D coordinates using the pinhole
+      model:
+
+        X_cam = (u − cx) · d / fx
+        Y_cam = (v − cy) · d / fy
+        Z_cam = d
+
+      where fx, fy, cx, cy are from the (scaled) intrinsic matrix K.
+
+  14. Form homogeneous camera-frame points:
+        P_cam = [X_cam, Y_cam, Z_cam, 1]^T        shape (N, 4)
+
+  15. Transform to world coordinates using the camera-to-world extrinsic pose:
+        P_world = T_cam→world · P_cam^T             shape (4, N)
+      then take the first three rows → (N, 3) world points.
+
+  16. Compute the robust 3D centroid as the component-wise MEDIAN of the
+      world points (not mean — median is resistant to depth noise / outlier
+      pixels).
+
+  Output per frame: list of dicts:
+      { name, confidence, centroid_3d (xyz), bbox, frame_id }
+
+
+================================================================================
+STAGE 4 — MULTI-VIEW FUSION VIA DBSCAN CLUSTERING
+================================================================================
+
+Problem:
+  The same physical object is detected in multiple keyframes, producing
+  multiple 3D centroids.  We need to merge them into unique object instances.
+
+Procedure (function: fuse_multiview_detections):
+
+  1. Group all raw detections (across all keyframes) by class name.
+
+  2. For each class:
+       a. Collect the array of 3D centroids and confidence scores.
+
+       b. If only one detection exists for this class:
+            — keep it if confidence ≥ 0.25; otherwise discard.
+
+       c. If multiple detections exist:
+            — Run DBSCAN clustering on the 3D centroids with:
+                eps = 0.3 meters (neighbourhood radius)
+                min_samples = min(2, n_detections)
+            — For each cluster (label ≠ −1, i.e. not noise):
+                • Compute the cluster centroid as the MEAN of member points.
+                • Compute the average confidence across member detections.
+                • Record n_views = number of member detections.
+            — Noise points (label == −1) are discarded as likely false
+              positives.
+
+  3. Sort the final object list by (n_views DESC, avg_confidence DESC).
+
+  Output: list of dicts:
+      { name, position_3d (xyz), n_views, avg_confidence }
+
+
+================================================================================
+FULL PIPELINE ORCHESTRATION  (function: run_full_pipeline)
+================================================================================
+
+  Phase 1 — Discovery:
+    Call discover_scene_classes with 5 sample frames.
+    Set YOLO-World vocabulary to the discovered classes.
+
+  Phase 2 — Detection:
+    Select 25 keyframes evenly from all available frames.
+    For each keyframe, call detect_and_locate_3d.
+    Collect all raw detections.
+
+  Phase 3 — Fusion:
+    Call fuse_multiview_detections on the full detection list.
+    Return the deduplicated 3D object map.
+
+
+================================================================================
+VISUALIZATION
+================================================================================
+
+  • 3D scatter plot (matplotlib Axes3D): each fused object instance is
+    plotted at its xyz position, colour-coded by class using the tab20
+    colourmap, with text labels.
+
+  • Table view: prints name, X, Y, Z, n_views, and avg_confidence for
+    every detected object instance.
+
+
+================================================================================
+KEY DESIGN CHOICES & PARAMETERS
+================================================================================
+
+  • Keyframe sampling (not every frame): reduces computation ~10× while
+    maintaining spatial coverage.
+
+  • Two-phase vocabulary (CLIP discovery → YOLO-World detection): avoids
+    the combinatorial explosion of running 178+ classes through YOLO-World
+    and reduces false positives.
+
+  • Low detection threshold (conf=0.10) + multi-view DBSCAN fusion:
+    aggressive recall per frame, then use geometric consistency across
+    views to prune false positives (objects seen from only one view with
+    low confidence are discarded as noise).
+
+  • Median centroid (not mean): robust to depth-sensor noise and mask
+    boundary pixels that project to incorrect depths.
+
+  • DBSCAN eps=0.3 m: typical indoor object separation; merges detections
+    of the same chair from different viewpoints while keeping two adjacent
+    chairs separate.
+
+  • Depth filtering (0.01–5.0 m): rejects sensor holes (depth=0) and
+    far-range noise that is unreliable on consumer depth sensors.
+
+  • Intrinsic rescaling: automatically handles the resolution mismatch
+    between ScanNet's native 640×480 intrinsics and the 320×240 depth
+    maps in frames_square.
+
+
+================================================================================
+MODELS & LIBRARIES USED
+================================================================================
+
+  SAM 2.1 Large        — ultralytics (SAM2Predictor wrapper)
+  YOLO-World v2 x-large — ultralytics (YOLOWorld)
+  CLIP ViT-B/32        — openai/clip
+  DBSCAN               — scikit-learn
+  Depth unprojection    — NumPy (pinhole camera model, homogeneous coords)
+  Visualization         — matplotlib, Pillow, OpenCV
+  Dataset               — ScanNet v2 (frames_square format)
