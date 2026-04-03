@@ -1,0 +1,911 @@
+{
+  "scene_id": "scene0025_00",
+  "n_frames_total": 98,
+  "n_keyframes_used": 25,
+  "n_discovery_classes": 178,
+  "discovered_classes": [
+    "chair",
+    "office chair",
+    "armchair",
+    "table",
+    "dining table",
+    "coffee table",
+    "sofa",
+    "couch",
+    "loveseat",
+    "desk",
+    "bed",
+    "nightstand",
+    "dresser",
+    "counter",
+    "countertop",
+    "stool",
+    "bar stool",
+    "bench",
+    "ottoman",
+    "futon",
+    "recliner",
+    "rocking chair",
+    "shelf",
+    "bookshelf",
+    "cabinet",
+    "drawer",
+    "wardrobe",
+    "closet",
+    "cupboard",
+    "filing cabinet",
+    "storage bin",
+    "chest",
+    "door",
+    "window",
+    "curtain",
+    "blinds",
+    "shutter",
+    "lamp",
+    "floor lamp",
+    "table lamp",
+    "ceiling light",
+    "chandelier",
+    "light fixture",
+    "sconce",
+    "monitor",
+    "computer monitor",
+    "tv",
+    "television",
+    "screen",
+    "keyboard",
+    "computer keyboard",
+    "laptop",
+    "printer",
+    "speaker",
+    "projector",
+    "refrigerator",
+    "fridge",
+    "microwave",
+    "oven",
+    "stove",
+    "dishwasher",
+    "toaster",
+    "coffee maker",
+    "sink",
+    "toilet",
+    "bathtub",
+    "shower",
+    "shower curtain",
+    "mirror",
+    "picture",
+    "picture frame",
+    "painting",
+    "clock",
+    "poster",
+    "whiteboard",
+    "bulletin board",
+    "calendar",
+    "pillow",
+    "cushion",
+    "blanket",
+    "towel",
+    "rug",
+    "carpet",
+    "mat",
+    "curtain",
+    "tablecloth",
+    "bottle",
+    "cup",
+    "mug",
+    "bowl",
+    "plate",
+    "glass",
+    "jar",
+    "can",
+    "pitcher",
+    "vase",
+    "bag",
+    "backpack",
+    "suitcase",
+    "box",
+    "cardboard box",
+    "bin",
+    "trash can",
+    "recycling bin",
+    "basket",
+    "crate",
+    "book",
+    "paper",
+    "notebook",
+    "magazine",
+    "newspaper",
+    "phone",
+    "cell phone",
+    "remote",
+    "remote control",
+    "pen",
+    "pencil",
+    "scissors",
+    "tape",
+    "stapler",
+    "fan",
+    "heater",
+    "radiator",
+    "air conditioner",
+    "humidifier",
+    "vacuum cleaner",
+    "iron",
+    "plant",
+    "potted plant",
+    "flower",
+    "flower pot",
+    "tree",
+    "piano",
+    "keyboard instrument",
+    "guitar",
+    "violin",
+    "drum",
+    "bookcase",
+    "shoe rack",
+    "coat rack",
+    "umbrella stand",
+    "wine rack",
+    "tv stand",
+    "entertainment center",
+    "sideboard",
+    "umbrella",
+    "hat",
+    "helmet",
+    "shoe",
+    "boot",
+    "coat",
+    "jacket",
+    "toy",
+    "stuffed animal",
+    "ball",
+    "board game",
+    "candle",
+    "tissue box",
+    "soap dispenser",
+    "toothbrush holder",
+    "fire extinguisher",
+    "smoke detector",
+    "column",
+    "pillar",
+    "beam",
+    "pipe",
+    "vent",
+    "electrical outlet",
+    "light switch",
+    "thermostat",
+    "doorknob",
+    "stairs",
+    "staircase",
+    "railing",
+    "banister",
+    "wall",
+    "floor",
+    "ceiling"
+  ],
+  "n_raw_detections": 419,
+  "n_objects": 72,
+  "objects": [
+    {
+      "name": "monitor",
+      "position_3d": [
+        3.6628202033053103,
+        1.942774988946282,
+        1.3620135857672115
+      ],
+      "n_views": 12,
+      "avg_confidence": 0.3131
+    },
+    {
+      "name": "bottle",
+      "position_3d": [
+        3.968056875724641,
+        1.2157108706079491,
+        1.0718623118858157
+      ],
+      "n_views": 7,
+      "avg_confidence": 0.4562
+    },
+    {
+      "name": "television",
+      "position_3d": [
+        3.648148786723471,
+        2.287031671081739,
+        1.345790305542438
+      ],
+      "n_views": 7,
+      "avg_confidence": 0.2817
+    },
+    {
+      "name": "desk",
+      "position_3d": [
+        3.533128073700316,
+        1.8049516006966908,
+        1.1476125363057226
+      ],
+      "n_views": 6,
+      "avg_confidence": 0.3936
+    },
+    {
+      "name": "bottle",
+      "position_3d": [
+        3.7727778954639604,
+        1.6732378623550148,
+        1.132130862770766
+      ],
+      "n_views": 5,
+      "avg_confidence": 0.6745
+    },
+    {
+      "name": "keyboard",
+      "position_3d": [
+        3.457607142940458,
+        2.0757143667747955,
+        1.1498074186449874
+      ],
+      "n_views": 4,
+      "avg_confidence": 0.6008
+    },
+    {
+      "name": "desk",
+      "position_3d": [
+        2.983176457094282,
+        3.6603123157597643,
+        1.1864924273469462
+      ],
+      "n_views": 4,
+      "avg_confidence": 0.3431
+    },
+    {
+      "name": "book",
+      "position_3d": [
+        5.69300837577073,
+        3.0717441406866373,
+        1.2149664261717743
+      ],
+      "n_views": 4,
+      "avg_confidence": 0.2389
+    },
+    {
+      "name": "bottle",
+      "position_3d": [
+        3.642661504931595,
+        3.672526380085802,
+        1.2142030873197163
+      ],
+      "n_views": 3,
+      "avg_confidence": 0.6581
+    },
+    {
+      "name": "keyboard",
+      "position_3d": [
+        3.855259014761595,
+        1.2780521465478285,
+        1.0559017825110364
+      ],
+      "n_views": 3,
+      "avg_confidence": 0.5465
+    },
+    {
+      "name": "phone",
+      "position_3d": [
+        4.497619629384062,
+        1.6062929073172516,
+        1.1787490525458837
+      ],
+      "n_views": 3,
+      "avg_confidence": 0.4612
+    },
+    {
+      "name": "computer monitor",
+      "position_3d": [
+        3.8757794298530555,
+        1.6627998717063897,
+        1.2728124666562142
+      ],
+      "n_views": 3,
+      "avg_confidence": 0.3066
+    },
+    {
+      "name": "television",
+      "position_3d": [
+        3.9637320412849566,
+        3.047682199503928,
+        1.3240865529596981
+      ],
+      "n_views": 3,
+      "avg_confidence": 0.2702
+    },
+    {
+      "name": "bottle",
+      "position_3d": [
+        3.479917955071301,
+        2.043024636595513,
+        1.1502240030544724
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.8554
+    },
+    {
+      "name": "whiteboard",
+      "position_3d": [
+        2.2421696004977143,
+        1.6971326032137235,
+        1.4438165588922818
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.8212
+    },
+    {
+      "name": "armchair",
+      "position_3d": [
+        2.0444048135968877,
+        2.159050416187151,
+        0.9989726698535176
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.6889
+    },
+    {
+      "name": "storage bin",
+      "position_3d": [
+        2.3608595126130316,
+        1.836802821547312,
+        0.9786134469152947
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.6875
+    },
+    {
+      "name": "bottle",
+      "position_3d": [
+        3.333729270006423,
+        4.207923369643851,
+        1.3748974276927282
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.6681
+    },
+    {
+      "name": "television",
+      "position_3d": [
+        3.5295618548552454,
+        3.4430318923386487,
+        1.3230229460402867
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.656
+    },
+    {
+      "name": "storage bin",
+      "position_3d": [
+        3.3226098555455614,
+        2.6730652823420744,
+        0.84406258664741
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.5672
+    },
+    {
+      "name": "office chair",
+      "position_3d": [
+        3.3696054100847523,
+        1.465046932917621,
+        1.1043945132012372
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.5511
+    },
+    {
+      "name": "trash can",
+      "position_3d": [
+        3.482322908936089,
+        3.319123432234492,
+        0.9298825200441817
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.5419
+    },
+    {
+      "name": "cabinet",
+      "position_3d": [
+        0.4143121437347847,
+        3.237412985716844,
+        1.4757326669487416
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.4862
+    },
+    {
+      "name": "keyboard",
+      "position_3d": [
+        4.344925976434375,
+        3.3056675126826893,
+        1.0624431410642576
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.4667
+    },
+    {
+      "name": "remote",
+      "position_3d": [
+        4.073462732849702,
+        3.5345294677478627,
+        1.0718107033944717
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.4656
+    },
+    {
+      "name": "chair",
+      "position_3d": [
+        4.560136321480563,
+        3.320024362265038,
+        1.212895595315707
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.462
+    },
+    {
+      "name": "keyboard",
+      "position_3d": [
+        3.9597669494673533,
+        2.463432447656288,
+        1.0347485234052887
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.4616
+    },
+    {
+      "name": "bottle",
+      "position_3d": [
+        3.7901410406646616,
+        1.5693898650856317,
+        1.5348697967344949
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.441
+    },
+    {
+      "name": "bookshelf",
+      "position_3d": [
+        0.48782069519387067,
+        3.82076117674964,
+        1.4165435248041143
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.4302
+    },
+    {
+      "name": "armchair",
+      "position_3d": [
+        3.370868051521912,
+        1.4648633652643075,
+        1.1001534110570934
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.4265
+    },
+    {
+      "name": "computer keyboard",
+      "position_3d": [
+        3.9680466124263964,
+        1.4772008935887422,
+        1.1071358601362546
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.3896
+    },
+    {
+      "name": "pen",
+      "position_3d": [
+        4.086933906827799,
+        3.493085453885006,
+        1.0687596929413756
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.3678
+    },
+    {
+      "name": "monitor",
+      "position_3d": [
+        4.278237551543367,
+        1.2431347164034665,
+        1.222874385072277
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.3631
+    },
+    {
+      "name": "wall",
+      "position_3d": [
+        2.233662009090101,
+        1.5949365582398047,
+        1.2403844588547879
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.3518
+    },
+    {
+      "name": "fan",
+      "position_3d": [
+        1.228351734856538,
+        2.7178066117539363,
+        0.9396864695085418
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.3506
+    },
+    {
+      "name": "computer keyboard",
+      "position_3d": [
+        4.459260133585932,
+        0.9867717798369724,
+        1.101756013456054
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.3484
+    },
+    {
+      "name": "box",
+      "position_3d": [
+        4.227047483363004,
+        1.8346724249541375,
+        1.1373886611997754
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.3261
+    },
+    {
+      "name": "book",
+      "position_3d": [
+        1.345492360190009,
+        2.6396690609967632,
+        0.8293845578663024
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.3139
+    },
+    {
+      "name": "shelf",
+      "position_3d": [
+        5.7777617021058205,
+        3.0711300462656896,
+        0.976003493326788
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.3115
+    },
+    {
+      "name": "notebook",
+      "position_3d": [
+        3.797251236548796,
+        2.65950656482614,
+        1.037768717890779
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2961
+    },
+    {
+      "name": "computer keyboard",
+      "position_3d": [
+        3.572489751406984,
+        1.9806602761058874,
+        1.108381373419147
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2861
+    },
+    {
+      "name": "backpack",
+      "position_3d": [
+        0.28699398098526885,
+        3.0472950960081695,
+        1.2466892988086977
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2776
+    },
+    {
+      "name": "floor",
+      "position_3d": [
+        2.629219590193705,
+        1.5229399515663888,
+        0.7728984513334561
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2658
+    },
+    {
+      "name": "pillow",
+      "position_3d": [
+        1.807830545645924,
+        5.443173853675329,
+        1.1075836491256201
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2597
+    },
+    {
+      "name": "radiator",
+      "position_3d": [
+        2.649491877746139,
+        2.2857359473109677,
+        1.2204014760607373
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.251
+    },
+    {
+      "name": "television",
+      "position_3d": [
+        6.301518194623973,
+        2.7096865816017983,
+        1.1339689047140844
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2494
+    },
+    {
+      "name": "cabinet",
+      "position_3d": [
+        5.7462776309161026,
+        3.0697101636715676,
+        0.9899203534998112
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2361
+    },
+    {
+      "name": "television",
+      "position_3d": [
+        4.145594531455936,
+        1.9727186826053127,
+        1.2389066353501903
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2359
+    },
+    {
+      "name": "storage bin",
+      "position_3d": [
+        2.860958055023756,
+        3.9451543052601066,
+        1.0160440745936932
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2353
+    },
+    {
+      "name": "box",
+      "position_3d": [
+        0.24635850421733624,
+        3.15428792228443,
+        1.2302963455533016
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2311
+    },
+    {
+      "name": "keyboard",
+      "position_3d": [
+        4.918921275272444,
+        2.9917891608850278,
+        1.100006290473335
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2269
+    },
+    {
+      "name": "television",
+      "position_3d": [
+        3.9115617358807144,
+        1.5681898820615752,
+        1.3046101433980823
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2263
+    },
+    {
+      "name": "monitor",
+      "position_3d": [
+        3.932344378185887,
+        2.9665404697211595,
+        1.340315122269217
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2198
+    },
+    {
+      "name": "monitor",
+      "position_3d": [
+        4.4109578761475365,
+        2.728520183371578,
+        1.3697578560599797
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2112
+    },
+    {
+      "name": "keyboard instrument",
+      "position_3d": [
+        4.341021650851943,
+        1.4935966901450786,
+        1.094090751530926
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2111
+    },
+    {
+      "name": "box",
+      "position_3d": [
+        0.20855539707496312,
+        3.3325746826290863,
+        2.182964190481954
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.2052
+    },
+    {
+      "name": "backpack",
+      "position_3d": [
+        0.7529978428462358,
+        3.2409957824337416,
+        1.53618361031485
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.1916
+    },
+    {
+      "name": "speaker",
+      "position_3d": [
+        3.764247155771158,
+        2.414572370731581,
+        1.0444477143644564
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.188
+    },
+    {
+      "name": "computer monitor",
+      "position_3d": [
+        4.694385035718381,
+        0.8007344393511596,
+        1.1629266287797186
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.1859
+    },
+    {
+      "name": "office chair",
+      "position_3d": [
+        0.9805399480128455,
+        3.275438646635804,
+        1.2621711406599776
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.1855
+    },
+    {
+      "name": "storage bin",
+      "position_3d": [
+        3.2913995376314227,
+        3.723952248176019,
+        0.9912375396066748
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.1849
+    },
+    {
+      "name": "fan",
+      "position_3d": [
+        0.36901203707937263,
+        4.274314000216709,
+        1.1172135707500834
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.1768
+    },
+    {
+      "name": "cabinet",
+      "position_3d": [
+        4.3725710565153175,
+        1.024007735937631,
+        1.1063281260465345
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.1652
+    },
+    {
+      "name": "television",
+      "position_3d": [
+        4.818117998406772,
+        0.8145313395403548,
+        1.1815398072769994
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.1586
+    },
+    {
+      "name": "filing cabinet",
+      "position_3d": [
+        4.3735573809253445,
+        1.0242748355897189,
+        1.1079180736991139
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.1404
+    },
+    {
+      "name": "book",
+      "position_3d": [
+        2.615427389256867,
+        3.4553421021803867,
+        1.2742567619833238
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.13
+    },
+    {
+      "name": "box",
+      "position_3d": [
+        5.469112190391003,
+        4.29279572723828,
+        1.510979382510127
+      ],
+      "n_views": 2,
+      "avg_confidence": 0.1145
+    },
+    {
+      "name": "table lamp",
+      "position_3d": [
+        4.083850289132972,
+        2.4768782073687907,
+        1.3786181743891441
+      ],
+      "n_views": 1,
+      "avg_confidence": 0.6166
+    },
+    {
+      "name": "pencil",
+      "position_3d": [
+        2.7740474760493665,
+        3.316024292616412,
+        1.1983597982715204
+      ],
+      "n_views": 1,
+      "avg_confidence": 0.464
+    },
+    {
+      "name": "electrical outlet",
+      "position_3d": [
+        0.33833545662465436,
+        3.502632243897651,
+        0.9887384408802284
+      ],
+      "n_views": 1,
+      "avg_confidence": 0.4303
+    },
+    {
+      "name": "stool",
+      "position_3d": [
+        2.886824501807418,
+        2.415441270568741,
+        0.8680476662531069
+      ],
+      "n_views": 1,
+      "avg_confidence": 0.4151
+    },
+    {
+      "name": "table",
+      "position_3d": [
+        2.786192265040016,
+        3.408968997687187,
+        1.1986021130450517
+      ],
+      "n_views": 1,
+      "avg_confidence": 0.2745
+    }
+  ],
+  "elapsed_seconds": 22.9
+}
