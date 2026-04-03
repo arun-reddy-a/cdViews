@@ -13,7 +13,7 @@ image_folder: '../data/qa/scannetv2/frames_square'
 feature_folder: '../data/qa/scannetv2/llava_ov_feats'
 view_distance_folder: '../data/qa/scannetv2/view_distance'
 
-dataset: ScanQA
+dataset: SQA
 batch_size: 8
 input_views: 9
 
